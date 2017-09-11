@@ -2,44 +2,74 @@ package com.ss.SocialistB.dao;
 
 import java.util.List;
 
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ss.SocialistB.model.Blog;
 
+@Repository("blogDAO")
+@Transactional
 public class BlogDAOImpl implements BlogDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
+	
 	public boolean createBlog(Blog blog) {
-		// TODO Auto-generated method stub
-		return false;
+		try 
+		{
+		Session s = sessionFactory.getCurrentSession();
+		s.saveOrUpdate(blog);
+		return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception : " + e);
+			return false;
+		}
 	}
 
-	public boolean editBlog(int blogID) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean editBlog(Integer blogID) {
+		Session s = sessionFactory.getCurrentSession();
+		s.update(blogID);
+		return true;
 	}
 
-	public boolean deleteBlog(int blogID) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteBlog(Integer blogID) {
+		Session s1= sessionFactory.getCurrentSession();
+		Blog b =(Blog)s1.load(Blog.class, blogID);
+		s1.delete(b);
+		return true;
+		
 	}
 
-	public Blog getBlog(int blogID) {
-		// TODO Auto-generated method stub
-		return null;
+	public Blog getBlog(Integer blogID) {
+		Session s1 =sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		Query q = s1.createQuery("from Blog where blogID="+blogID);
+	    Blog b = (Blog)q.getSingleResult();
+	    return b;
 	}
 
 	public List<Blog> getAllBlogs() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session =sessionFactory.openSession();
+		Query query = session.createQuery("from Blog");
+		List<Blog> list=query.getResultList();
+		return list;
 	}
-
+	
 	public boolean approveBlog(Blog blog) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Session s = sessionFactory.getCurrentSession();
+		blog.setBlogStatus("A");
+		s.saveOrUpdate(blog);
+		return true;
 	}
 
 }

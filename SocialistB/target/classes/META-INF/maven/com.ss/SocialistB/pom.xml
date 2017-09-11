@@ -46,12 +46,13 @@
     <artifactId>spring-tx</artifactId>
     <version>4.3.10.RELEASE</version>
 </dependency>
-    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+ <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 <dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-core</artifactId>
-    <version>4.3.10.Final</version>
+    <version>5.2.10.Final</version>
 </dependency>
+
     <dependency>
 	<groupId>com.oracle</groupId>
 	<artifactId>ojdbc6</artifactId>

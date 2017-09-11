@@ -2,29 +2,34 @@ package com.ss.SocialistB.model;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Generated;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Blog {
+public class Blog implements Serializable {
 
 	@Id
-	private int blogID;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer blogID;
 	private String blogContent;
 	private String blogName;
-	private String userName;
+	private Integer userID;
 	private String blogStatus;
-	private int likes;
+	private Integer likes;
 	private Date createDate;
-	public int getBlogID() {
+	public Integer getBlogID() {
 		return blogID;
 	}
-	public void setBlogID(int blogID) {
+	public void setBlogID(Integer blogID) {
 		this.blogID = blogID;
 	}
 	public String getBlogContent() {
@@ -39,11 +44,11 @@ public class Blog {
 	public void setBlogName(String blogName) {
 		this.blogName = blogName;
 	}
-	public String getUserName() {
-		return userName;
+	public Integer getUserID() {
+		return userID;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserID(Integer userID) {
+		this.userID = userID;
 	}
 	public String getBlogStatus() {
 		return blogStatus;
@@ -51,10 +56,10 @@ public class Blog {
 	public void setBlogStatus(String blogStatus) {
 		this.blogStatus = blogStatus;
 	}
-	public int getLikes() {
+	public Integer getLikes() {
 		return likes;
 	}
-	public void setLikes(int likes) {
+	public void setLikes(Integer likes) {
 		this.likes = likes;
 	}
 	public Date getCreateDate() {
@@ -63,4 +68,5 @@ public class Blog {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+	
 }

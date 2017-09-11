@@ -5,12 +5,13 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.ss.SocialistB.model.Blog;
@@ -20,6 +21,8 @@ import com.ss.SocialistB.model.Blog;
 @ComponentScan(basePackages="com.ss")
 public class HibernateConfig {
 	
+	@Bean(name="dataSource")
+	
 	public DataSource getOracleDataSource(){
 		DriverManagerDataSource driverManagerDataSource = 
 				new DriverManagerDataSource();
@@ -27,9 +30,9 @@ public class HibernateConfig {
 		
 		driverManagerDataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 		
-		driverManagerDataSource.setUsername("system");
+		driverManagerDataSource.setUsername("hr");
 		
-		driverManagerDataSource.setPassword("941996");
+		driverManagerDataSource.setPassword("hr");
 		
 		return driverManagerDataSource;		
 	}
@@ -41,10 +44,11 @@ public class HibernateConfig {
 		
 		properties.setProperty("hibernate.show_sql", "true");
 		
-		properties.setProperty("hibernate.hbm2ddl.auto","update");
+	//	properties.setProperty("hibernate.hbm2ddl.auto","update");
 		
 		return properties;
 	}
+	@Autowired
 	@Bean
 	public SessionFactory getSessionFactory()
 	{
@@ -58,7 +62,7 @@ public class HibernateConfig {
 		return localSessionFactoryBuilder.buildSessionFactory();
 	}
 
-	
+	@Autowired
 	@Bean
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory)
 	{
