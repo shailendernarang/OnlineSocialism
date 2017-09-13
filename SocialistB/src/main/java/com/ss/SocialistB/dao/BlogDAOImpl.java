@@ -13,12 +13,15 @@ import org.springframework.stereotype.Repository;
 
 import com.ss.SocialistB.model.Blog;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Repository("blogDAO")
 @Transactional
 public class BlogDAOImpl implements BlogDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	Blog blog;
 	
 	
 	public boolean createBlog(Blog blog) {
@@ -35,9 +38,10 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
-	public boolean editBlog(Integer blogID) {
+	public boolean editBlog(Blog blog) {
 		Session s = sessionFactory.getCurrentSession();
-		s.update(blogID);
+		blog.setBlogName("YOOYOY");
+		s.update(blog);
 		return true;
 	}
 
@@ -68,7 +72,7 @@ public class BlogDAOImpl implements BlogDAO {
 		
 		Session s = sessionFactory.getCurrentSession();
 		blog.setBlogStatus("A");
-		s.saveOrUpdate(blog);
+		s.update(blog);
 		return true;
 	}
 

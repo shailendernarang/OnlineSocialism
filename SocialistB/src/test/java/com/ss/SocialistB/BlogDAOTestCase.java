@@ -1,12 +1,11 @@
 package com.ss.SocialistB;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.List;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -43,21 +42,31 @@ public class BlogDAOTestCase {
 		
 	}
 	
+	
 	@Test
-	public void approveBlogTest()
+	public void editBlogTest()
 	{
 		Blog blog = new Blog();
-		blog.setBlogID(4);
+		blog.setBlogID(5);
 		blog.setBlogName("SELENIUM");
 		blog.setBlogContent("it is a testing tool");
 		blog.setCreateDate(new Date());
 		blog.setBlogStatus("NA");
-		blog.setLikes(0);
+		blog.setLikes(2);
 		
+		assertTrue("Problem in Blog Creation",blogDAO.editBlog(blog));
+		
+	}
+	@Test
+	public void approveBlogTest()
+	{
+		Blog blog = new Blog();
+		blog.setBlogID(5);
+		blog.setBlogStatus("A");
+		blog.setLikes(2);
 		assertTrue("Problem in Blog Creation",blogDAO.approveBlog(blog));
 		
 	}
-	
 	
 	@Test
 	public void getAllApprovedBlogTest()

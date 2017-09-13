@@ -13,7 +13,10 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 public class ForumComment implements Serializable{
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int forumCommentID;

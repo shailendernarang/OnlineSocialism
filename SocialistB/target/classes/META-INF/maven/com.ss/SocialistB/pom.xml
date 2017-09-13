@@ -58,5 +58,11 @@
 	<artifactId>ojdbc6</artifactId>
 	<version>11.2.0</version>
 </dependency>
+
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.7.5</version>
+</dependency>
   </dependencies>
 </project>
