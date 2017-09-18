@@ -27,9 +27,9 @@ public class ForumDAOImpl implements ForumDAO {
 		return true;
 	}
 
-	public boolean editForum(Integer forumID) {
+	public boolean editForum(Forum forum) {
 		Session s = sessionFactory.getCurrentSession();
-		s.update(forumID);
+		s.update(forum);
 		return true;
 	}
 

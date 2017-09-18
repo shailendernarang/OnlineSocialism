@@ -26,9 +26,9 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 		return true;
 	}
 
-	public boolean editBlogComment(Integer blogCommentID) {
+	public boolean editBlogComment(BlogComment blogComment) {
 		Session s = sessionFactory.getCurrentSession();
-		s.update(blogCommentID);
+		s.update(blogComment);
 		return true;
 	}
 

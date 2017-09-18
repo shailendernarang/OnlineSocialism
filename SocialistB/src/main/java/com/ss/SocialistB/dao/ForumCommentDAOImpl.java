@@ -26,9 +26,9 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 		return true;
 	}
 
-	public boolean editForumComment(Integer forumCommentID) {
+	public boolean editForumComment(ForumComment forumComment) {
 		Session s = sessionFactory.getCurrentSession();
-		s.update(forumCommentID);
+		s.update(forumComment);
 		return true;
 	}
 

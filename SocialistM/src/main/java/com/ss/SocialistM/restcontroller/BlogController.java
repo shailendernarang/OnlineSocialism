@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ss.SocialistB.dao.BlogDAO;
@@ -39,7 +38,6 @@ public class BlogController
 		blog.setCreateDate(new Date());
 	if(blogDAO.createBlog(blog))
 	{
-		
 		
 		return new ResponseEntity<String> ("Blog Created",HttpStatus.ACCEPTED);
 
@@ -78,8 +76,8 @@ public class BlogController
 
 	}
 	
-	@GetMapping("/getBlog")
-	public Blog getBlog (@RequestParam("blogID") int blogId)
+	@GetMapping("/getBlog/{blogID}")
+	public Blog getBlog (@PathVariable("blogID") int blogId)
 	{
 		
 		return blogDAO.getBlog(blogId);

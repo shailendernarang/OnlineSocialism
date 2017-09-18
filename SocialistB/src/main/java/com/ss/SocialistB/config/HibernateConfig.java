@@ -15,6 +15,10 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.ss.SocialistB.model.Blog;
+import com.ss.SocialistB.model.BlogComment;
+import com.ss.SocialistB.model.Forum;
+import com.ss.SocialistB.model.ForumComment;
+import com.ss.SocialistB.model.User;
 
 @Configuration
 @EnableTransactionManagement
@@ -30,9 +34,9 @@ public class HibernateConfig {
 		
 		driverManagerDataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 		
-		driverManagerDataSource.setUsername("hr");
+		driverManagerDataSource.setUsername("Socialism");
 		
-		driverManagerDataSource.setPassword("hr");
+		driverManagerDataSource.setPassword("941996");
 		
 		return driverManagerDataSource;		
 	}
@@ -44,7 +48,7 @@ public class HibernateConfig {
 		
 		properties.setProperty("hibernate.show_sql", "true");
 		
-	//	properties.setProperty("hibernate.hbm2ddl.auto","update");
+    	properties.setProperty("hibernate.hbm2ddl.auto","update");
 		
 		return properties;
 	}
@@ -58,7 +62,10 @@ public class HibernateConfig {
 		localSessionFactoryBuilder.addProperties(getHibernateProperties());
 		
 		localSessionFactoryBuilder.addAnnotatedClass(Blog.class);
-		
+		localSessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
+		localSessionFactoryBuilder.addAnnotatedClass(Forum.class);
+		localSessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
+		localSessionFactoryBuilder.addAnnotatedClass(User.class);
 		return localSessionFactoryBuilder.buildSessionFactory();
 	}
 
