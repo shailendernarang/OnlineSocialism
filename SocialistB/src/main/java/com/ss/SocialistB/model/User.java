@@ -2,6 +2,7 @@ package com.ss.SocialistB.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,9 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class User implements Serializable 
 {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -24,6 +23,7 @@ public class User implements Serializable
 	private String firstName;
 	private String lastName;
 	private String password;
+	@Column(unique=true,nullable=false)
 	private String emailID;
 	private String role;
 	private String status;
