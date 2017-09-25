@@ -7,19 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
+@Table(name="User_Table")
 public class User implements Serializable 
 {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer userID;
+	@Column(unique=true,nullable=false)
 	private String firstName;
 	private String lastName;
 	private String password;
@@ -27,13 +28,8 @@ public class User implements Serializable
 	private String emailID;
 	private String role;
 	private String status;
-	private String isOnline;
-	public Integer getUserID() {
-		return userID;
-	}
-	public void setUserID(Integer userID) {
-		this.userID = userID;
-	}
+	private boolean isOnline;
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,12 +66,16 @@ public class User implements Serializable
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getIsOnline() {
+	public boolean isOnline() {
 		return isOnline;
 	}
-	public void setIsOnline(String isOnline) {
+	public void setOnline(boolean isOnline) {
 		this.isOnline = isOnline;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	
 	
 
