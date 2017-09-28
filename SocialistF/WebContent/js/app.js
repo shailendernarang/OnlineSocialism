@@ -15,6 +15,7 @@ app.config(function($routeProvider){
 			templateUrl:'views/login.html',
 			controller:'UserController'
 		})
+		
 		.otherwise({
 			templateUrl:'views/home.html'
 		})

@@ -1,14 +1,14 @@
 package com.ss.SocialistM.restcontroller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.ss.SocialistB.model.Error;
 import com.ss.SocialistB.model.User;
@@ -19,6 +19,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private HttpSession httpsession;
 	
 	@RequestMapping(value="/registeruser",method=RequestMethod.POST)
 	public ResponseEntity<?> registerUser(@RequestBody User user)
@@ -54,7 +56,15 @@ public class UserController {
 			Error error = new Error(4,"Invalid Username Or Password");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
-			
+			u.setOnline(true);
+			try {
+			userService.update(u);
+			}catch(Exception e){
+				Error error = new Error(6,"Unable to update online status");
+				return new ResponseEntity<Error>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+				
+			}
+			httpsession.setAttribute("firstName",u);
 			return new ResponseEntity<User>(u,HttpStatus.ACCEPTED);
 		
 	}

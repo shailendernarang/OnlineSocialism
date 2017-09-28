@@ -1,5 +1,7 @@
 package com.ss.SocialistB.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +29,9 @@ private UserDao userDao;
 		return userDao.login(user);
 	}
 
-	public boolean approveUser(User user) {
-		return userDao.approveUser(user);
+	public void update(User user)
+	{
+		userDao.update(user);
 	}
 
 }

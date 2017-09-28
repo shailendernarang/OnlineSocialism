@@ -8,6 +8,6 @@ public interface UserService {
 	boolean isUsernameValid(String Username);
 	public boolean isEmailValid(String email);
 	public User login(User user);
-	public boolean approveUser(User user);
+	public void update(User user);
 	
 }

@@ -41,4 +41,5 @@ app.controller('UserController',function($scope,UserService,$location){
 			$location.path('/login');
 		})
 	}
+	
 });

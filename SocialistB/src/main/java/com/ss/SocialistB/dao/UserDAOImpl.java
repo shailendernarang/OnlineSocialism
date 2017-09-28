@@ -1,5 +1,7 @@
 package com.ss.SocialistB.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -8,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ss.SocialistB.model.Blog;
 import com.ss.SocialistB.model.User;
 
 @Repository("userDAO")
@@ -62,11 +65,9 @@ public class UserDAOImpl implements UserDao {
 		return user;
 	}
 
-	public boolean approveUser(User user) {
+	public void update(User user) {
 		session = sessionFactory.getCurrentSession();
-		user.setStatus("Approved");
 		session.update(user);
-		return true;
 		
 	}
 

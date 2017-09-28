@@ -17,6 +17,7 @@ app.factory('UserService',function($http){
 		
 		return $http.post(BASE_URL+"/login",user);
 	}
+	
 	return userService;
 	
 	
