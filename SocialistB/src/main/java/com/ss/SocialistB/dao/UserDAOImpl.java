@@ -19,14 +19,12 @@ public class UserDAOImpl implements UserDao {
 	
 	@Autowired
 	SessionFactory sessionFactory;
-	@Autowired
-	Session session;
+	
 
 	public boolean register(User user) {
 		
-		 session = sessionFactory.getCurrentSession();
+		 Session session = sessionFactory.getCurrentSession();
 	try {
-		user.setStatus("Pending");
 		session.save(user);
 		return true;
 	}catch(Exception e) {
@@ -37,7 +35,7 @@ public class UserDAOImpl implements UserDao {
 	//Checks Username Duplicacy
 	public boolean isUsernameValid(String username) {
 
-		session = sessionFactory.getCurrentSession();
+		 Session session = sessionFactory.getCurrentSession();
 		User user =(User)session.get(User.class, username);
 		if(user==null)
 			return true;
@@ -46,7 +44,7 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public boolean isEmailValid(String email) {
-		session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from User where emailID=?");
 		query.setString(0, email);
 		User user=(User) query.uniqueResult();
@@ -57,7 +55,7 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public User login(User user) {
-		session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query query=session.createQuery("from User where firstName=? and password=?");
 		query.setString(0,user.getFirstName());
 		query.setString(1, user.getPassword());
@@ -66,9 +64,15 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public void update(User user) {
-		session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.update(user);
 		
+	}
+
+	public User getUserByUserName(String firstName) {
+		Session session = sessionFactory.getCurrentSession();
+		User user=(User)session.get(User.class, firstName);
+		return user;
 	}
 
 }

@@ -1,7 +1,7 @@
 /**
  * Angular JS userController
  */
-app.controller('UserController',function($scope,UserService,$location){
+app.controller('UserController',function($scope,UserService,$location,$rootScope,$cookieStore){
 
 	$scope.registerUser=function()
 	{
@@ -33,6 +33,10 @@ app.controller('UserController',function($scope,UserService,$location){
 	{
 		console.log ("User Login Data"+$scope.user);
 		UserService.login($scope.user).then(function(response){
+			
+			$rootScope.currentUser=response.data; // accessing variable username from here 
+			$cookieStore.put('userDetails',response.data);
+			
 			console.log(response.data);
 			console.log(response.status);
 			$location.path('/home');
@@ -40,6 +44,13 @@ app.controller('UserController',function($scope,UserService,$location){
 			$scope.error=response.data;
 			$location.path('/login');
 		})
-	}
 	
+	if($rootScope.currentUser!=undefined){
+	UserService.getUser().then(function(response){
+		$scope.user=response.data;
+	},function(response){
+		console.log(response.status)
+	})
+	}
+	}
 });

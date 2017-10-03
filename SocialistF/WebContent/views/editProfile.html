@@ -1,0 +1,46 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+</head>
+<body>
+<div class="container"><br>
+<span style="color:red" ng-if="error.code==1">{{error.message}}</span><br>
+
+<form>
+
+ <div class="form-group" >
+<input type="text" ng-model="user.firstName" placeholder="name" class="form-control" disabled>
+<span style="color:red" ng-if="error.code==2" >{{error.message}}</span>
+</div>
+
+<div class="form-group">
+<input type="password" ng-model="user.password" placeholder="password" class="form-control">
+</div>
+<div class="form-group">
+<input type="text" ng-model="user.lastName" placeholder="lastname" class="form-control">
+</div>
+<div class="form-group">
+<input type="email" ng-model="user.emailID" placeholder="emailID" class="form-control" required="required">
+<span style="color:red" ng-if="error.code==3">{{error.message}}</span>
+</div>
+<div class="radio">
+<input type="radio" ng-model="user.role" value="Student">Student</div>
+<div class="radio"">
+<input type="radio" ng-model="user.role" value="ALUMINI">ALUMINI</div>
+<div class="radio">
+<input type="radio" ng-model="user.role" value="Employee" >Employee</div>
+<div class="form-group">
+<input type="submit" value="Register" ng-click="updateUser()" class="form-control"></div>
+
+
+</form>
+</div>
+</body>
+
+</html>

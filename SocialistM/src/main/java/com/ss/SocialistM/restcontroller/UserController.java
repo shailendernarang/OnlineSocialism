@@ -19,8 +19,7 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private HttpSession httpsession;
+	
 	
 	@RequestMapping(value="/registeruser",method=RequestMethod.POST)
 	public ResponseEntity<?> registerUser(@RequestBody User user)
@@ -49,7 +48,7 @@ public class UserController {
 		}
 	}
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public ResponseEntity<?> login(@RequestBody User user)
+	public ResponseEntity<?> login(@RequestBody User user,HttpSession session)
 	{
 		User u=userService.login(user);
 		if(u==null) {
@@ -64,8 +63,38 @@ public class UserController {
 				return new ResponseEntity<Error>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 				
 			}
-			httpsession.setAttribute("firstName",u);
+			session.setAttribute("firstName",u.getFirstName());
 			return new ResponseEntity<User>(u,HttpStatus.ACCEPTED);
 		
+	}
+	@RequestMapping(value="/logout",method=RequestMethod.PUT)
+	public ResponseEntity<?> logout(HttpSession session)
+	{
+		String firstName=session.getAttribute("firstName").toString();
+		if(firstName==null) {
+			Error error = new Error(7,"UNAUTHORIZED");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		User user = userService.getUserByUserName(firstName);
+		user.setOnline(false);
+		userService.update(user);
+		session.removeAttribute("firstName");
+		session.invalidate();
+		return new ResponseEntity<String>("Logout",HttpStatus.ACCEPTED);
+	}
+	@RequestMapping(value="/getUser",method=RequestMethod.GET)
+	
+	public ResponseEntity<?> getUser(HttpSession session)
+	{
+		String userName = (String)session.getAttribute("firstName");
+		if(userName==null)
+		{
+			Error error = new Error(7,"UNAUTHORIZED");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		
+		}
+		User user = userService.getUserByUserName(userName);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+
 	}
  }

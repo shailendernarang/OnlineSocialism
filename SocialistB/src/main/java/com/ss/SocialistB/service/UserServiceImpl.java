@@ -34,4 +34,8 @@ private UserDao userDao;
 		userDao.update(user);
 	}
 
+	public User getUserByUserName(String firstName) {
+		return userDao.getUserByUserName(firstName);
+	}
+
 }

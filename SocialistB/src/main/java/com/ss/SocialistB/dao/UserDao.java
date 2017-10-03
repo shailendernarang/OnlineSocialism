@@ -12,4 +12,5 @@ public interface UserDao {
 	public boolean isEmailValid(String email);
 	public User login(User user);
 	public void update(User user);
+	User getUserByUserName(String firstName);
 	}
