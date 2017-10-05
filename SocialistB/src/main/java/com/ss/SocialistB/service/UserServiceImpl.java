@@ -38,4 +38,8 @@ private UserDao userDao;
 		return userDao.getUserByUserName(firstName);
 	}
 
+	public boolean isUpdatedEmailValid(String email, String username) {
+		return userDao.isUpdatedEmailValid(email, username);
+	}
+
 }

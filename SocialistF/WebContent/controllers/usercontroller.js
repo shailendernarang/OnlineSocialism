@@ -44,13 +44,59 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 			$scope.error=response.data;
 			$location.path('/login');
 		})
+	}
 	
 	if($rootScope.currentUser!=undefined){
 	UserService.getUser().then(function(response){
 		$scope.user=response.data;
 	},function(response){
-		console.log(response.status)
+		
 	})
 	}
+
+	$scope.updateUser = function(){
+		UserService.updateUser($scope.user)
+				.then(function(response){
+					alert("Updated Successfully");
+					$location.path('/home');
+				},function(response){
+					if(response.status==401)
+					{
+					$location.path('/login')
+					}
+				else{
+					$scope.error = response.data;
+				$location.path('/editProfile')
+				}
+				})
+	}
+	$rootScope.logout = function(){
+		delete $rootScope.currentUser;
+		UserService.logout()
+		.then(function(response){
+			console.log(" CURRENT USER");
+	
+	console.log(" CURRENT USER");
+	console.log("DELETED CURRENT USER");
+	$cookieStore.remove('userDetails');
+	console.log("REMOVE CURRENT USER");
+
+	$location.path('/login');
+},function(response){
+	if(response.status==401)
+		{
+		console.log(response.message);
+		delete $rootScope.currentUser;
+		console.log(" CURRENT USER");
+		console.log("DELETED CURRENT USER");
+		$cookieStore.remove('userDetails');
+		console.log("REMOVE CURRENT USER");
+
+		$location.path('/login');
+		}
+	
+	
+	
+})
 	}
 });

@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -23,12 +25,16 @@ public class Blog implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer blogID;
+
+	@Lob
 	private String blogContent;
 	private String blogName;
-	private Integer userID;
-	private String blogStatus;
+	@ManyToOne
+	private User postedBy;
+	private boolean blogStatus;
 	private Integer likes;
 	private Date createDate;
+	private String rejectionReason;
 	public Integer getBlogID() {
 		return blogID;
 	}
@@ -47,16 +53,16 @@ public class Blog implements Serializable {
 	public void setBlogName(String blogName) {
 		this.blogName = blogName;
 	}
-	public Integer getUserID() {
-		return userID;
+	public User getPostedBy() {
+		return postedBy;
 	}
-	public void setUserID(Integer userID) {
-		this.userID = userID;
+	public void setPostedBy(User postedBy) {
+		this.postedBy = postedBy;
 	}
-	public String getBlogStatus() {
+	public boolean isBlogStatus() {
 		return blogStatus;
 	}
-	public void setBlogStatus(String blogStatus) {
+	public void setBlogStatus(boolean blogStatus) {
 		this.blogStatus = blogStatus;
 	}
 	public Integer getLikes() {
@@ -70,6 +76,15 @@ public class Blog implements Serializable {
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+	public String getRejectionReason() {
+		return rejectionReason;
+	}
+	public void setRejectionReason(String rejectionReason) {
+		this.rejectionReason = rejectionReason;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }

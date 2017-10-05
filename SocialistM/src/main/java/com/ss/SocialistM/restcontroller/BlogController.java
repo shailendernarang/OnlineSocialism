@@ -3,6 +3,8 @@ package com.ss.SocialistM.restcontroller;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ss.SocialistB.dao.BlogDAO;
 import com.ss.SocialistB.model.Blog;
+import com.ss.SocialistB.model.Error;
+import com.ss.SocialistB.model.User;
+import com.ss.SocialistB.service.UserService;
 
 @RestController
 public class BlogController
@@ -23,6 +28,8 @@ public class BlogController
 	
 	@Autowired
 	BlogDAO blogDAO;
+	@Autowired
+	UserService userService;
 	
 	@GetMapping(value="/getAllBlogs")
 	public ResponseEntity<ArrayList<Blog>> getAllBlogs()
@@ -33,9 +40,17 @@ public class BlogController
 	}
 	
 	@PostMapping(value="/createBlog")
-	public ResponseEntity<String> createBlog(@RequestBody Blog blog)
+	public ResponseEntity<?> createBlog(@RequestBody Blog blog,HttpSession httpSession)
 	{				
+		String userName=(String)httpSession.getAttribute("firstName");
+		if(userName==null)
+		{
+			Error error= new Error(11,"Unauthroized Access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
 		blog.setCreateDate(new Date());
+		User postedBy=userService.getUserByUserName(userName);
+		blog.setPostedBy(postedBy);
 	if(blogDAO.createBlog(blog))
 	{
 		

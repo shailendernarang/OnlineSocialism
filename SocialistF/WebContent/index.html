@@ -25,11 +25,11 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#!/home">Home</a></li>
-      <li><a href="#!/register" ng-hide="currentUser.firstName">Signup</a></li>
-      <li><a href="#!/login"  ng-hide="currentUser.firstName">Login</a></li>    
-      <li><a href="#" ng-show="currentUser.firstName"> Welcome {{currentUser.firstName}}</a></li>
-      <li><a href="#!/editProfile" ng-show="currentUser.firstName">Edit Profile</a></li>
-      <li><a href="#!/logout" ng-show="currentUser.firstName" ng-click="logout()">Logout</a> 
+      <li><a href="#!/register" ng-show="currentUser.firstName==undefined">Signup</a></li>
+      <li><a href="#!/login"  ng-show="currentUser.firstName==undefined">Login</a></li>    
+      <li><a href="#" ng-hide="currentUser.firstName==undefined"> Welcome {{currentUser.firstName}}</a></li>
+      <li><a href="#!/editProfile" ng-hide="currentUser.firstName==undefined">Edit Profile</a></li>
+      <li><a href="#!/logout" ng-hide="currentUser.firstName==undefined" ng-click="logout()">Logout</a> 
        
       
     </ul>

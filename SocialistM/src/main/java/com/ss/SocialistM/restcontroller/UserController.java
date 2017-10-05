@@ -97,4 +97,32 @@ public class UserController {
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value="/updateUser",method=RequestMethod.PUT)
+	public ResponseEntity<?> updateUser(@RequestBody User user,HttpSession httpSession)
+	{
+		String userName = (String) httpSession.getAttribute("firstName");
+		if(userName==null)
+		{
+			Error error = new Error(7,"UNAUTHORIZED");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		
+		}
+	if(!userService.isUpdatedEmailValid(user.getEmailID(),user.getFirstName())) {//duplicate result
+			
+			Error error = new Error(2,"Email Already there");
+		
+			return new ResponseEntity<Error>(error,HttpStatus.NOT_ACCEPTABLE);
+		}
+		try {
+			userService.update(user);
+			return new ResponseEntity<User>(user,HttpStatus.OK);
+
+		}catch(Exception e) {
+			Error error = new Error(10,"Unable To Update");
+			return new ResponseEntity<Error>(error,HttpStatus.BAD_GATEWAY);
+
+		}
+	}
+
  }

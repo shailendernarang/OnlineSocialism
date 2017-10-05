@@ -27,18 +27,6 @@ app.run(function($rootScope,$cookieStore,UserService,$location){
 	if($rootScope.currentUser==undefined)
 	{	
 			$rootScope.currentUser=$cookieStore.get('userDetails')
+			console.log($cookieStore.get('userDetails'));
 	}	
-	$rootScope.logout=function()
-	{
-		UserService.logout()
-				.then(function(response){
-			delete $rootScope.currentUser;
-			$cookieStore.remove('userDetails')
-			$location.path('/login')
-		},function(response){
-			
-			console.log(response.status);
-			
-		})
-	}
 })

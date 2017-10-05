@@ -10,5 +10,7 @@ public interface UserService {
 	public User login(User user);
 	public void update(User user);
 	User getUserByUserName(String firstName);
+	public boolean isUpdatedEmailValid(String email,String username);
+
 	
 }

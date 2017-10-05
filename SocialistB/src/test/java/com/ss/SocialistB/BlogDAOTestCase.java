@@ -35,7 +35,7 @@ public class BlogDAOTestCase {
 		blog.setBlogName("SELENIUM");
 		blog.setBlogContent("it is a testing tool");
 		blog.setCreateDate(new Date());
-		blog.setBlogStatus("NA");
+		blog.setBlogStatus(true);
 		blog.setLikes(0);
 		
 		assertTrue("Problem in Blog Creation",blogDAO.createBlog(blog));
@@ -51,7 +51,7 @@ public class BlogDAOTestCase {
 		blog.setBlogName("SELENIUM");
 		blog.setBlogContent("it is a testing tool");
 		blog.setCreateDate(new Date());
-		blog.setBlogStatus("NA");
+		blog.setBlogStatus(true);
 		blog.setLikes(2);
 		
 		assertTrue("Problem in Blog Creation",blogDAO.editBlog(blog));
@@ -62,7 +62,7 @@ public class BlogDAOTestCase {
 	{
 		Blog blog = new Blog();
 		blog.setBlogID(5);
-		blog.setBlogStatus("A");
+		blog.setBlogStatus(true);
 		blog.setLikes(2);
 		assertTrue("Problem in Blog Creation",blogDAO.approveBlog(blog));
 		

@@ -71,7 +71,7 @@ public class BlogDAOImpl implements BlogDAO {
 	public boolean approveBlog(Blog blog) {
 		
 		Session s = sessionFactory.getCurrentSession();
-		blog.setBlogStatus("A");
+		blog.setBlogStatus(true);
 		s.update(blog);
 		return true;
 	}
