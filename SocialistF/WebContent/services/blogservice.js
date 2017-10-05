@@ -3,14 +3,14 @@
  */
 app.factory('BlogService',function($http)
 {	
-var blogService={}
+var blogService={};
 
-var BASE_URL="http://localhost:8087/SocialistM"		
+var BASE_URL="http://localhost:8087/SocialistM"	;	
 
 	blogService.createBlog = function(blog)
 	{
 	
-		$http.post(BASE_URL+"/createBlog",blog);
+		return $http.post(BASE_URL+"/createBlog",blog);
 	}
 
 blogService.blogWaitingForApproval = function()
@@ -24,6 +24,5 @@ blogService.blogApproved = function()
 
 	$http.get(BASE_URL+"/getAllBlogs/"+1);
 }
-
-return blogService;
+	return blogService;
 })

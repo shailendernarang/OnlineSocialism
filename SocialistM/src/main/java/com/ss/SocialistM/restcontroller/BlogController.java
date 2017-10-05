@@ -42,12 +42,11 @@ public class BlogController
 //		return new  ResponseEntity<ArrayList<Blog>>(listBlogs,HttpStatus.ACCEPTED);
 //	}
 	
-	@PostMapping(value="/createBlog")
+	@RequestMapping(value="/createBlog",method=RequestMethod.POST)
 	public ResponseEntity<?> createBlog(@RequestBody Blog blog,HttpSession httpSession)
 	{				
 		String userName=(String)httpSession.getAttribute("firstName");
-		Error error= new Error(11,"Unauthroized Access");
-
+		Error error= new Error(13,"Unauthroized Access");
 		if(userName==null)
 		{
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
@@ -55,16 +54,17 @@ public class BlogController
 		blog.setCreateDate(new Date());
 		User postedBy=userService.getUserByUserName(userName);
 		blog.setPostedBy(postedBy);
-	if(blogDAO.createBlog(blog))
-	{
+					try 
+					{
 		
-		return new ResponseEntity<Blog> (blog,HttpStatus.ACCEPTED);
-
-	}
-	else {
-		return new ResponseEntity<Error> (error,HttpStatus.NOT_ACCEPTABLE);
-
-	}
+						blogDAO.createBlog(blog);
+						System.out.println("name"+blog.getBlogName());
+						return new ResponseEntity<Blog> (blog,HttpStatus.OK);
+					}
+					catch(Exception e)
+					{
+						return new ResponseEntity<Error> (error,HttpStatus.UNAUTHORIZED);
+					}
 	
 		
 	}

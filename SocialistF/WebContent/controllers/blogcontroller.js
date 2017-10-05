@@ -8,6 +8,7 @@ app.controller('BlogController',function($scope,BlogService,$location){
 		console.log("Blog DATA "+$scope.blog);
 		
 		BlogService.createBlog($scope.blog).then(function(response){
+			console.log("sahi hai");
 			alert("Added Successfully,Waiting For approval");
 			$location.path('/createBlog');
 			
