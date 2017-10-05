@@ -61,9 +61,9 @@ public class BlogDAOImpl implements BlogDAO {
 	    return b;
 	}
 
-	public List<Blog> getAllBlogs() {
+	public List<Blog> getAllBlogs(int approved) {
 		Session session =sessionFactory.openSession();
-		Query query = session.createQuery("from Blog");
+		Query query = session.createQuery("from Blog where blogStatus="+approved);
 		List<Blog> list=query.getResultList();
 		return list;
 	}

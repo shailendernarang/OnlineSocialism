@@ -19,6 +19,10 @@ app.config(function($routeProvider){
 			templateUrl:'views/editProfile.html',
 			controller:'UserController'
 		})
+		.when('/createBlog',{
+			templateUrl:'views/createBlog.html',
+			controller:'BlogController'
+		})
 		.otherwise({
 			templateUrl:'views/home.html'
 		})

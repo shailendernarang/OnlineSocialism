@@ -69,9 +69,9 @@ public class BlogDAOTestCase {
 	}
 	
 	@Test
-	public void getAllApprovedBlogTest()
+	public void getAllApprovedBlogTest(int approved)
 	{
-		List<Blog> listBlog =blogDAO.getAllBlogs();
+		List<Blog> listBlog =blogDAO.getAllBlogs(approved);
 		assertTrue("No approved Blogs",listBlog.size()>0);
 	}
 	

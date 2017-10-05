@@ -10,6 +10,6 @@ public interface BlogDAO {
 	public boolean editBlog(Blog blog);
 	public boolean deleteBlog(Integer blogID);
 	public Blog getBlog(Integer blogID);
-	public List<Blog> getAllBlogs();
+	public List<Blog> getAllBlogs(int approved);
 	public boolean approveBlog(Blog blog);
 }
