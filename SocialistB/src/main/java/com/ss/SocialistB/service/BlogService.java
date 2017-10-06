@@ -8,5 +8,7 @@ public interface BlogService {
 	
 	public boolean createBlog(Blog blog);
 	public List<Blog> getAllBlogs(int approved);
+	public boolean approve(Blog blog);
+	Blog getBlog(int id);
 
 }

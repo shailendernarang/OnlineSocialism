@@ -20,4 +20,28 @@ app.controller('BlogController',function($scope,BlogService,$location){
 		})
 			
 	}
+	function blogsApproved()
+	{
+		BlogService.blogsApproved().then(function(response){
+			
+			$scope.listOfBlogsApproved = response.data
+		},function(response){
+			$location.path('/login')
+			
+		})
+	}
+	function blogsWaitingForApproval()
+	{
+		BlogService.blogsWaitingForApproval().then(function(response){
+			$scope.listOfBlogsWaitingForApproval = response.data
+		},function(response){
+			$location.path('/login')
+			
+		})
+		}
+
+	
+	
+	blogsApproved()
+	blogsWaitingForApproval()
 });

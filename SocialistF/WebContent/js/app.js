@@ -23,6 +23,18 @@ app.config(function($routeProvider){
 			templateUrl:'views/createBlog.html',
 			controller:'BlogController'
 		})
+		.when('/getAllBlogs',{
+			templateUrl:'views/getBlogs.html',
+			controller:'BlogController'
+		})
+		.when('/getBlogByID/:id',{
+			templateUrl:'views/blogdetails.html',
+			controller:'BlogDetailController'
+		})
+		.when('/getApprovalForm/:id',{
+			templateUrl:'views/approvalBlogForm.html',
+			controller:'BlogDetailController'
+		})
 		.otherwise({
 			templateUrl:'views/home.html'
 		})

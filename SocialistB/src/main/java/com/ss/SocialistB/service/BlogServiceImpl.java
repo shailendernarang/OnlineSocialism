@@ -19,6 +19,14 @@ BlogDAO blogDao;
 	public List<Blog> getAllBlogs(int approved) {
 		return blogDao.getAllBlogs(approved);
 	}
+
+	public boolean approve(Blog blog) {
+		return blogDao.approveBlog(blog);
+	}
+
+	public Blog getBlog(int id) {
+		return blogDao.getBlog(id);
+	}
 	
 
 }

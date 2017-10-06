@@ -23,6 +23,7 @@ import com.ss.SocialistB.dao.BlogDAO;
 import com.ss.SocialistB.model.Blog;
 import com.ss.SocialistB.model.Error;
 import com.ss.SocialistB.model.User;
+import com.ss.SocialistB.service.BlogService;
 import com.ss.SocialistB.service.UserService;
 
 @RestController
@@ -33,6 +34,8 @@ public class BlogController
 	BlogDAO blogDAO;
 	@Autowired
 	UserService userService;
+	@Autowired 
+	BlogService blogService;
 //	
 //	@GetMapping(value="/getAllBlogs")
 //	public ResponseEntity<ArrayList<Blog>> getAllBlogs()
@@ -69,8 +72,8 @@ public class BlogController
 		
 	}
 	
-	@PutMapping("/approveBlog/{blogID}")
-	public ResponseEntity<String> approveBlog (@PathVariable("blogID")Integer blogId)
+	@PutMapping("/getBlogById/{blogID}")
+	public ResponseEntity<String> approve (@PathVariable("blogID")Integer blogId)
 	{
 		Blog blog = blogDAO.getBlog(blogId);
 		
@@ -95,11 +98,17 @@ public class BlogController
 
 	}
 	
-	@GetMapping("/getBlog/{blogID}")
-	public Blog getBlog (@PathVariable("blogID") int blogId)
-	{
-		
-		return blogDAO.getBlog(blogId);
+	@GetMapping("/getBlog/{blogId}")
+	public ResponseEntity<?> getBlog (@PathVariable int blogId,HttpSession httpSession)
+	{		String userName=(String)httpSession.getAttribute("firstName");
+	Error error= new Error(13,"Unauthroized Access");
+
+		if(userName==null)
+		{
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		Blog blog = blogService.getBlog(blogId);
+		return new ResponseEntity<Blog>(blog,HttpStatus.OK);
 
 	}
 	
@@ -113,11 +122,11 @@ public class BlogController
 	}
 
 	@RequestMapping(value="/getAllBlogs/{approved}",method=RequestMethod.GET)
-	public ResponseEntity<?> getBlogs (@PathVariable int approved,HttpSession httpSession)
+	public ResponseEntity<?> getAllBlogs (@PathVariable int approved,HttpSession httpSession)
 	{
 		String userName=(String)httpSession.getAttribute("firstName");
 		Error error= new Error(11,"Unauthroized Access");
-
+		
 		if(userName==null)
 		{
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
@@ -125,5 +134,6 @@ public class BlogController
 		List<Blog> blog=blogDAO.getAllBlogs(approved);
 		return new ResponseEntity<List<Blog>>(blog,HttpStatus.ACCEPTED);
 	}
+	
 
 }

@@ -54,11 +54,9 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	public Blog getBlog(Integer blogID) {
-		Session s1 =sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		Query q = s1.createQuery("from Blog where blogID="+blogID);
-	    Blog b = (Blog)q.getSingleResult();
-	    return b;
+		Session session = sessionFactory.getCurrentSession();
+		Blog blog=(Blog)session.get(Blog.class,blogID);
+		return blog;
 	}
 
 	public List<Blog> getAllBlogs(int approved) {
@@ -75,5 +73,6 @@ public class BlogDAOImpl implements BlogDAO {
 		s.update(blog);
 		return true;
 	}
+	
 
 }

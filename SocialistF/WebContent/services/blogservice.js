@@ -13,16 +13,22 @@ var BASE_URL="http://localhost:8087/SocialistM"	;
 		return $http.post(BASE_URL+"/createBlog",blog);
 	}
 
-blogService.blogWaitingForApproval = function()
+blogService.blogsWaitingForApproval = function()
 {
 
-	$http.get(BASE_URL+"/getAllBlogs/"+0);
+	return $http.get(BASE_URL+"/getAllBlogs/"+0);
 }
 
-blogService.blogApproved = function()
+blogService.blogsApproved = function()
 {
 
-	$http.get(BASE_URL+"/getAllBlogs/"+1);
+	return $http.get(BASE_URL+"/getAllBlogs/"+1);
+}
+
+blogService.getBlogByID = function(id){
+
+	return $http.get(BASE_URL+"/getBlog/"+id)
+
 }
 	return blogService;
 })
