@@ -30,5 +30,10 @@ blogService.getBlogByID = function(id){
 	return $http.get(BASE_URL+"/getBlog/"+id)
 
 }
+blogService.approve = function(blog)
+{
+	
+	return $http.put(BASE_URL+"/approveBlog",blog);
+}
 	return blogService;
 })

@@ -72,23 +72,23 @@ public class BlogController
 		
 	}
 	
-	@PutMapping("/getBlogById/{blogID}")
-	public ResponseEntity<String> approve (@PathVariable("blogID")Integer blogId)
-	{
-		Blog blog = blogDAO.getBlog(blogId);
-		
-		if(blogDAO.approveBlog(blog))
-		{
-			return new ResponseEntity<String> ("Blog Approved",HttpStatus.ACCEPTED);
-
-		}
-		else
-		{
-			return new ResponseEntity<String> ("Blog Not Approved",HttpStatus.BAD_GATEWAY);
-
-		}
-
-	}
+//	@PutMapping("/getBlogById/{blogID}")
+//	public ResponseEntity<String> approve (@PathVariable("blogID")Integer blogId)
+//	{
+//		Blog blog = blogDAO.getBlog(blogId);
+//		
+//		if(blogDAO.approveBlog(blog))
+//		{
+//			return new ResponseEntity<String> ("Blog Approved",HttpStatus.ACCEPTED);
+//
+//		}
+//		else
+//		{
+//			return new ResponseEntity<String> ("Blog Not Approved",HttpStatus.BAD_GATEWAY);
+//
+//		}
+//
+//	}
 	
 	@DeleteMapping("/deleteBlog/{blogID}")
 	public ResponseEntity<String> deleteBlog (@PathVariable("blogID")Integer blogId,@RequestBody Blog blog)
@@ -131,9 +131,29 @@ public class BlogController
 		{
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
+		
 		List<Blog> blog=blogDAO.getAllBlogs(approved);
 		return new ResponseEntity<List<Blog>>(blog,HttpStatus.ACCEPTED);
 	}
 	
+	@RequestMapping(value="/approveBlog",method=RequestMethod.PUT)
+
+	public ResponseEntity<?> approveBlog(@RequestBody Blog blog,HttpSession httpSession)
+	{
+		String userName=(String)httpSession.getAttribute("firstName");
+		
+		System.out.println("I AM HERE");
+		if(userName==null)
+		{
+			Error error= new Error(11,"Unauthroized Access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+	//	if(!blog.isBlogStatus() && blog.getRejectionReason()==null)
+		//{
+			//blog.setRejectionReason("Not Mentioned");
+		//}
+		blogService.approveBlog(blog);
+		return new ResponseEntity<Blog>(blog,HttpStatus.OK);
+	}
 
 }

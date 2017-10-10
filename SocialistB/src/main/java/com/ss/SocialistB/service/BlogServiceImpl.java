@@ -20,8 +20,8 @@ BlogDAO blogDao;
 		return blogDao.getAllBlogs(approved);
 	}
 
-	public boolean approve(Blog blog) {
-		return blogDao.approveBlog(blog);
+	public void approveBlog(Blog blog) {
+			blogDao.approveBlog(blog);
 	}
 
 	public Blog getBlog(int id) {

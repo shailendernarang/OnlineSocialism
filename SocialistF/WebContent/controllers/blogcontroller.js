@@ -39,9 +39,10 @@ app.controller('BlogController',function($scope,BlogService,$location){
 			
 		})
 		}
-
+	
 	
 	
 	blogsApproved()
 	blogsWaitingForApproval()
+	
 });

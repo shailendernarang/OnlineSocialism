@@ -32,7 +32,7 @@ public class Blog implements Serializable {
 	@ManyToOne
 	private User postedBy;
 	private boolean blogStatus;
-	private Integer likes;
+	private int likes;
 	private Date createDate;
 	private String rejectionReason;
 	public Integer getBlogID() {

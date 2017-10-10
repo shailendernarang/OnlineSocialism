@@ -61,17 +61,21 @@ public class BlogDAOImpl implements BlogDAO {
 
 	public List<Blog> getAllBlogs(int approved) {
 		Session session =sessionFactory.openSession();
-		Query query = session.createQuery("from Blog where blogStatus="+approved);
+		String querys="";
+				if(approved==1)
+						querys="from Blog where blogStatus="+approved;
+				else
+					querys="from Blog where  rejectionReason is null and blogStatus="+approved;
+
+		Query query = session.createQuery(querys);
 		List<Blog> list=query.getResultList();
 		return list;
 	}
 	
-	public boolean approveBlog(Blog blog) {
-		
+	public  void approveBlog(Blog blog) {
 		Session s = sessionFactory.getCurrentSession();
-		blog.setBlogStatus(true);
 		s.update(blog);
-		return true;
+		
 	}
 	
 

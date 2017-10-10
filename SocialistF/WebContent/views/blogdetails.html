@@ -1,4 +1,12 @@
-{{blog.blogName}}
-{{blog.blogContent}}
 
+<div class="container">
+  <h2>Basic Panel</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">{{blog.blogName}}</div>
+   <span class="panel-heading">Created BY {{blog.postedBy.firstName}}</span>
+  	<span class="panel-heading">On:{{blog.createDate|date :'yyyy-mm-dd'}}</span>
+  	    <div class="panel-body">{{blog.blogContent}}</div>
+  	   <a><span class="glyphicon glyphicon-thumbs-up" ng-class="isLiked?'liked':'default'" ng-click="updateLike()">{{blog.likes}}</span></a>
+  	
+  </div>
 <b>Text Area for Comments</b>

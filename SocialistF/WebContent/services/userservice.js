@@ -19,7 +19,7 @@ app.factory('UserService',function($http){
 	}
 	userService.logout = function(){
 		
-		console.log("userserice logout");
+		console.log("userservice logout");
 		
 		return $http.put(BASE_URL+"/logout");
 	}
@@ -33,6 +33,7 @@ app.factory('UserService',function($http){
 	{
 		return $http.put(BASE_URL+"/updateUser",user)
 	}
+	
 	return userService;
 	
 	

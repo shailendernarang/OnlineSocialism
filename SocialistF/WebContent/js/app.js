@@ -43,6 +43,6 @@ app.run(function($rootScope,$cookieStore,UserService,$location){
 	if($rootScope.currentUser==undefined)
 	{	
 			$rootScope.currentUser=$cookieStore.get('userDetails')
-			console.log($cookieStore.get('userDetails'));
+			console.log('jhjjhjhjhhj'+$cookieStore.get('userDetails'));
 	}	
 })

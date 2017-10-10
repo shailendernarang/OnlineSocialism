@@ -2,8 +2,12 @@
 <br/>
 {{blog.blogContent}}
 <br>
-<input type="submit" value="Approve" ng-click="approve($scope.blog.blogID)">
-<input type="submit" value="Reject" ng-click="reject()">
-
+<input type="radio"  ng-model="blog.blogStatus" value="true" ng-click="showRejectionTxt(false)">Approved
+<input type="radio"  ng-model="blog.blogStatus" value="false" ng-click="showRejectionTxt(true)">Reject
+<p ng-show="isRejected">
+<textarea rows="5" cols="20" ng-model="blog.rejectionReason"></textarea>
+</p>
+<input type="submit" value="update" ng-click="approve()">
 </div>
+
 <b>Approval Form</b>
