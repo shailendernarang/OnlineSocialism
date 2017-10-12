@@ -11,6 +11,7 @@
   <script src="controllers/blogcontroller.js"></script>
     <script src="controllers/blogdetailcontroller.js"></script>
   <script src="services/blogservice.js"></script>
+  
   <link rel="stylesheet" href="css/blogdetail.css">
 
   <meta charset="utf-8">
@@ -31,8 +32,8 @@
       <li class="active"><a href="#!/home">Home</a></li>
       <li><a href="#!/register" ng-show="currentUser.firstName==undefined">Signup</a></li>
       <li><a href="#!/login"  ng-show="currentUser.firstName==undefined">Login</a></li>    
-	  <li><a href="#!/createBlog" ng-hide="currentUser.firstName==undefined">Add Blog</a></li>
-      <li><a href="#!/getAllBlogs" ng-hide="currentUser.firstName==undefined">Get blogs</a></li>
+	  <li><a href="#!/createBlog" ng-hide="currentUser.role=='ADMIN'">Add Blog</a></li>
+      <li><a href="#!/getAllBlogs" ng-show="currentUser.role=='ADMIN'">Get blogs</a></li>
       <li><a href="#" ng-hide="currentUser.firstName==undefined"> Welcome {{currentUser.firstName}}</a></li>
       <li><a href="#!/editProfile" ng-hide="currentUser.firstName==undefined">Edit Profile</a></li>
       <li><a href="#!/logout" ng-hide="currentUser.firstName==undefined" ng-click="logout()">Logout</a> </li>

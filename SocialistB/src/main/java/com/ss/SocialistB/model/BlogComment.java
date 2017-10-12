@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -21,28 +23,32 @@ public class BlogComment implements Serializable
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int blogCommentID;
-	private int userID;
-	private String blogComment;
+	@ManyToOne
+	@JoinColumn(name="firstName")
+	private User postedBy;
+	private String blogCommentText;
 	private Date blogCommentDate;
-	private int blogID;
-	private String userName;
+	@ManyToOne
+	@JoinColumn(name="blogID")
+	private Blog blog;
 	public int getBlogCommentID() {
 		return blogCommentID;
 	}
 	public void setBlogCommentID(int blogCommentID) {
 		this.blogCommentID = blogCommentID;
 	}
-	public int getUserID() {
-		return userID;
+	public User getPostedBy() {
+		return postedBy;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setPostedBy(User postedBy) {
+		this.postedBy = postedBy;
 	}
-	public String getBlogComment() {
-		return blogComment;
+	
+	public String getBlogCommentText() {
+		return blogCommentText;
 	}
-	public void setBlogComment(String blogComment) {
-		this.blogComment = blogComment;
+	public void setBlogCommentText(String blogCommentText) {
+		this.blogCommentText = blogCommentText;
 	}
 	public Date getBlogCommentDate() {
 		return blogCommentDate;
@@ -50,18 +56,14 @@ public class BlogComment implements Serializable
 	public void setBlogCommentDate(Date blogCommentDate) {
 		this.blogCommentDate = blogCommentDate;
 	}
-	public int getBlogID() {
-		return blogID;
+	public Blog getBlog() {
+		return blog;
 	}
-	public void setBlogID(int blogID) {
-		this.blogID = blogID;
+	public void setBlog(Blog blog) {
+		this.blog = blog;
 	}
-	public String getUserName() {
-		return userName;
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	} 
-
 }
-

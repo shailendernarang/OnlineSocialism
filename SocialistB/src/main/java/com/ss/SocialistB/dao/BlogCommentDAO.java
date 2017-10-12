@@ -12,5 +12,6 @@ public interface BlogCommentDAO {
 	public boolean deleteBlogComment(Integer blogCommentID);
 	public BlogComment getBlogComment(Integer blogCommentID);
 	public List<BlogComment> getAllBlogComments();
+	public List<BlogComment> getBlogComments(int blogID);
 	
 }

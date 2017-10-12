@@ -22,7 +22,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 	
 	public boolean addBlogComment(BlogComment blogComment) {
 		Session s = sessionFactory.getCurrentSession();
-		s.saveOrUpdate(blogComment);
+		s.save(blogComment);
 		return true;
 	}
 
@@ -51,6 +51,13 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 		Session session =sessionFactory.openSession();
 		Query query = session.createQuery("from BlogComment");
 		List<BlogComment> list=query.getResultList();
+		return list;
+	}
+
+	public List<BlogComment> getBlogComments(int BlogID) {
+		Session session =sessionFactory.openSession();
+		Query query = session.createQuery("from BlogComment where blog.blogID="+BlogID);
+		List<BlogComment> list=query.list();
 		return list;
 	}
 

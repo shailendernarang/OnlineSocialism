@@ -155,5 +155,19 @@ public class BlogController
 		blogService.approveBlog(blog);
 		return new ResponseEntity<Blog>(blog,HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value="/getAllBlogsRejected/{rejected}",method=RequestMethod.GET)
+	public ResponseEntity<?> getAllBlogsRejected (@PathVariable int rejected,HttpSession httpSession)
+	{
+		String userName=(String)httpSession.getAttribute("firstName");
+		Error error= new Error(11,"Unauthroized Access");
+		
+		if(userName==null)
+		{
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		
+		List<Blog> blog=blogService.getAllBlogsRejected(rejected);
+		return new ResponseEntity<List<Blog>>(blog,HttpStatus.ACCEPTED);
+	}
 }

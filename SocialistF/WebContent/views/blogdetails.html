@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" >
   <h2>Basic Panel</h2>
   <div class="panel panel-default">
     <div class="panel-heading">{{blog.blogName}}</div>
@@ -10,3 +10,15 @@
   	
   </div>
 <b>Text Area for Comments</b>
+<textarea rows="3" cols="25" ng-model="blogComment.blogCommentText"></textarea>
+<button class="btn btn-primary" value="POST COMMENT" ng-click="addComment()">Add</button>
+<br>
+<b>Comments</b>
+<table>
+<ul ng-repeat="blogs in blogComments" ng-init="getBlogComments()"  style="list-style: none">
+ <li>{{blogs.postedBy.firstName}} On {{blogs.blogCommentDate|date:'dd/mm/yyyy'}} </li>
+ <li>{{blogs.blogCommentText}}</li> 
+</ul>
+
+</table>
+</div>

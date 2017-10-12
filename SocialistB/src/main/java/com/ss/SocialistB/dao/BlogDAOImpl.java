@@ -77,6 +77,14 @@ public class BlogDAOImpl implements BlogDAO {
 		s.update(blog);
 		
 	}
+
+	public List<Blog> getAllBlogsRejected(int rejected) {
+		Session session =sessionFactory.openSession();
+		
+		Query query = session.createQuery("from Blog where rejectionReason!=null and blogStatus="+rejected);
+		List<Blog> list=query.getResultList();
+		return list;
+	}
 	
 
 }

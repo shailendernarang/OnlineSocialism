@@ -70,12 +70,13 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 				}
 				})
 	}
-	$rootScope.logout = function(){
+	$rootScope.logout = function()
+	{
 		delete $rootScope.currentUser;
 		UserService.logout()
 		.then(function(response){
 			console.log(" CURRENT USER");
-	
+			
 	console.log(" CURRENT USER");
 	console.log("DELETED CURRENT USER");
 	$cookieStore.remove('userDetails');

@@ -36,3 +36,22 @@
 
 </table>
 </div>
+<div  ng-show="currentUser.role=='ADMIN'">
+<b>List of Blogs Rejected</b>
+<table class="table table-striped">
+<thead>
+<tr><th>Blog Title</th><th>Author</th><th>Content</th><th>Posted On</th></tr>
+</thead>
+<tbody>
+<tr ng-repeat="blogs in listOfBlogsRejected">
+<td>{{blogs.blogName}}</td>
+<td>{{blogs.postedBy.firstName}}</td>
+<td>{{blogs.blogContent}}</td>
+<td>{{blogs.createDate | date :'yyyy/MM/dd'}}</td>
+
+<tr>
+
+</tbody>
+
+</table>
+</div>
