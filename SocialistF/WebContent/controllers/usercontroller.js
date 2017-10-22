@@ -38,8 +38,6 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 			$cookieStore.put('userDetails',response.data);
 			
 			console.log(response.data);
-			console.log(response.status);
-			$location.path('/home');
 		},function(response){
 			$scope.error=response.data;
 			$location.path('/login');
@@ -77,11 +75,10 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 		.then(function(response){
 			console.log(" CURRENT USER");
 			
-	console.log(" CURRENT USER");
-	console.log("DELETED CURRENT USER");
+
 	$cookieStore.remove('userDetails');
 	console.log("REMOVE CURRENT USER");
-
+	
 	$location.path('/login');
 },function(response){
 	if(response.status==401)
@@ -100,4 +97,5 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 	
 })
 	}
+
 });

@@ -1,24 +1,63 @@
 
-<div class="container" >
-  <h2>Basic Panel</h2>
-  <div class="panel panel-default">
-    <div class="panel-heading">{{blog.blogName}}</div>
-   <span class="panel-heading">Created BY {{blog.postedBy.firstName}}</span>
-  	<span class="panel-heading">On:{{blog.createDate|date :'yyyy-mm-dd'}}</span>
-  	    <div class="panel-body">{{blog.blogContent}}</div>
-  	   <a><span class="glyphicon glyphicon-thumbs-up" ng-class="isLiked?'liked':'default'" ng-click="updateLike()">{{blog.likes}}</span></a>
-  	
-  </div>
-<b>Text Area for Comments</b>
-<textarea rows="3" cols="25" ng-model="blogComment.blogCommentText"></textarea>
-<button class="btn btn-primary" value="POST COMMENT" ng-click="addComment()">Add</button>
-<br>
-<b>Comments</b>
-<table>
-<ul ng-repeat="blogs in blogComments" ng-init="getBlogComments()"  style="list-style: none">
- <li>{{blogs.postedBy.firstName}} On {{blogs.blogCommentDate|date:'dd/mm/yyyy'}} </li>
- <li>{{blogs.blogCommentText}}</li> 
-</ul>
 
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>{{blog.postedBy.firstName}}</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">{{blog.createDate|date : hh:mm}}</h6>
+                    </div>
+                </div> 
+                <div class="post-description"> 
+                    <p>{{blog.blogContent}}</p>
+                    <div class="stats">
+                        <a  class="btn btn-default stat-item" ng-class="isLiked?'liked':'default'" ng-click="updateLike()">
+                            <i class="fa fa-thumbs-up icon"></i>{{blog.likes}}
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
+</div>
+
+    
+    
+<div class="container">
+	<div class="row">
+	<!-- Contenedor Principal -->
+    <div class="comments-container">
+
+		<ul id="comments-list" class="comments-list">
+			<li>
+				<div class="comment-main-level" ng-repeat="blogs in blogComments" ng-init="getBlogComments()" >
+					<!-- Avatar -->
+					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box" >
+						<div class="comment-head">
+							<h6 class="comment-name by-author"><a>{{blogs.postedBy.firstName}}</a></h6>
+							<span>{{blogs.blogCommentDate|date:'dd.MM.y hh:mm'}}</span>
+							<i class="fa fa-reply"></i>
+							<i class="fa fa-heart"></i>
+						</div>
+						<div class="comment-content">
+						{{blogs.blogCommentText}}
+						</div>
+					</div>
+				</div>
+				</li>
+				</ul>
+				</div>
+				</div>
+				</div>
+				

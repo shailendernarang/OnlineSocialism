@@ -34,6 +34,7 @@ app.factory('UserService',function($http){
 		return $http.put(BASE_URL+"/updateUser",user)
 	}
 	
+	
 	return userService;
 	
 	

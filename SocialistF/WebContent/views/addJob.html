@@ -1,0 +1,31 @@
+<div class="container" ng-controller="JobController as ctrl">
+<form class="form-group" ng-submit="ctrl.submit()">
+<div class="form-group">
+Enter Job Title
+<input type="text" ng-model="ctrl.job.jobTitle" class="form-control">
+</div>
+<div class="form-group">
+Enter Job Location
+<input type="text" ng-model=" ctrl.job.location" class="form-control">
+</div>
+<div class="form-group">
+Enter Job Description
+<input type="text" ng-model="ctrl.job.jobDesc" class="form-control">
+</div>
+<div class="form-group">
+Enter Company Name
+<input type="text" ng-model="ctrl.job.companyName" class="form-control">
+</div>	
+<div class="form-group">
+Enter Job Salary Package
+<input type="text" ng-model="ctrl.job.salary" class="form-control">
+</div>
+<div class="form-group">
+Enter Skills Required
+<input type="text" ng-model="ctrl.job.skillsRequired" class="form-control">
+</div>
+<button type="submit">POST</button>
+<button type="reset">RESET</button>
+
+</form>
+</div>

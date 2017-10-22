@@ -35,14 +35,19 @@ app.config(function($routeProvider){
 			templateUrl:'views/approvalBlogForm.html',
 			controller:'BlogDetailController'
 		})
+		.when('/addJob',{
+			templateUrl:'views/addJob.html',
+			controller : 'JobController'
+		})
+		.when('/getAllJobs',{
+			templateUrl:'views/getAllJobs.html',
+			controller:'JobController'
+		})
+		.when('/uploadProfilePic',{
+			templateUrl:'views/uploadProfilePic.html',
+			
+		})
 		.otherwise({
 			templateUrl:'views/home.html'
 		})
-})
-app.run(function($rootScope,$cookieStore,UserService,$location){
-	if($rootScope.currentUser==undefined)
-	{	
-			$rootScope.currentUser=$cookieStore.get('userDetails')
-			console.log('jhjjhjhjhhj'+$cookieStore.get('userDetails'));
-	}	
 })

@@ -56,7 +56,8 @@ app.controller('BlogDetailController',function($scope,BlogService,$location,$rou
 		$scope.blogComment.blog = $scope.blog;
 		console.log($scope.blogComment.blog);
 		BlogService.addComment($scope.blogComment).then(function(response){
-			
+			$scope.blogComment.blogCommentText = "";
+			getBlogComments();
 		},function(response){
 			$location.path('/getBlogByID/'+$scope.blog.blogID)
 		})
