@@ -41,16 +41,16 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 
 	public BlogComment getBlogComment(Integer blogCommentID) {
 		Session s1 =sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
+
 		Query q = s1.createQuery("from BlogComment where blogCommentID="+blogCommentID);
-	    BlogComment b = (BlogComment)q.getSingleResult();
+	    BlogComment b = (BlogComment)q.uniqueResult();
 	    return b;
 	}
 
 	public List<BlogComment> getAllBlogComments() {
 		Session session =sessionFactory.openSession();
 		Query query = session.createQuery("from BlogComment");
-		List<BlogComment> list=query.getResultList();
+		List<BlogComment> list=query.list();
 		return list;
 	}
 

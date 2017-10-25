@@ -44,14 +44,14 @@ public class ForumDAOImpl implements ForumDAO {
 		Session s1 =sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		Query q = s1.createQuery("from Forum where forumID="+forumID);
-	    Forum b = (Forum)q.getSingleResult();
+	    Forum b = (Forum)q.uniqueResult();
 	    return b;
 	}
 
 	public List<Forum> getAllForums() {
 		Session session =sessionFactory.openSession();
 		Query query = session.createQuery("from Forum");
-		List<Forum> list=query.getResultList();
+		List<Forum> list=query.list();
 		return list;
 	}
 

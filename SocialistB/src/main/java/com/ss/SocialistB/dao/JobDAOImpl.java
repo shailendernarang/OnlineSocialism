@@ -30,7 +30,7 @@ public class JobDAOImpl implements JobDAO {
 	public List<Job> getAllJobs() {
 		Session session =sessionFactory.openSession();
 		Query query = session.createQuery("from Job");
-		List<Job> list=query.getResultList();
+		List<Job> list=query.list();
 		return list;
 	}
 

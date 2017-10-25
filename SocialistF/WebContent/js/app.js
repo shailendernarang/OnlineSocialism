@@ -44,10 +44,54 @@ app.config(function($routeProvider){
 			controller:'JobController'
 		})
 		.when('/uploadProfilePic',{
-			templateUrl:'views/uploadProfilePic.html',
+			templateUrl:'views/uploadProfilePic.html'
 			
+		})
+		.when('/pendingRequests',{
+			templateUrl:'views/pendingRequest.html',
+			controller:'FriendController'
+		})
+		.when('/getSuggestedUsers',{
+			templateUrl:'views/suggestedUser.html',
+			controller:'FriendController'
+			
+		})
+		.when('/listOfFriends',{
+			templateUrl:'views/listoffriends.html',
+			controller:'FriendController'
 		})
 		.otherwise({
 			templateUrl:'views/home.html'
 		})
+})
+
+app.run(function($rootScope,$cookieStore,UserService,$location){
+	if($rootScope.currentUser==undefined){
+		$rootScope.currentUser=$cookieStore.get('userDetails');
+		
+	}
+	$rootScope.logout = function()
+	{
+		delete $rootScope.currentUser;
+		UserService.logout()
+		.then(function(response){
+			console.log(" CURRENT USER");
+			
+
+	$cookieStore.remove($rootScope.currentUser);
+	console.log("REMOVE CURRENT USER");
+	
+	$location.path('/login');
+},function(response){
+	if(response.status==401)
+		{
+		console.log(response.message);
+		delete $rootScope.currentUser;
+		$cookieStore.remove('userDetails');
+		console.log("REMOVE CURRENT USER");
+
+		$location.path('/login');
+		}
+})
+}
 })

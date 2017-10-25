@@ -43,14 +43,14 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 		Session s1 =sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		Query q = s1.createQuery("from ForumComment where forumCommentID="+forumCommentID);
-	    ForumComment b = (ForumComment)q.getSingleResult();
+	    ForumComment b = (ForumComment)q.uniqueResult();
 	    return b;
 	}
 
 	public List<ForumComment> getAllForumComments() {
 		Session session =sessionFactory.openSession();
 		Query query = session.createQuery("from ForumComment");
-		List<ForumComment> list=query.getResultList();
+		List<ForumComment> list=query.list();
 		return list;
 	}
 

@@ -36,7 +36,7 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 			
 			$rootScope.currentUser=response.data; // accessing variable username from here 
 			$cookieStore.put('userDetails',response.data);
-			
+			$location.path('/home')
 			console.log(response.data);
 		},function(response){
 			$scope.error=response.data;
@@ -68,34 +68,7 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 				}
 				})
 	}
-	$rootScope.logout = function()
-	{
-		delete $rootScope.currentUser;
-		UserService.logout()
-		.then(function(response){
-			console.log(" CURRENT USER");
-			
-
-	$cookieStore.remove('userDetails');
-	console.log("REMOVE CURRENT USER");
-	
-	$location.path('/login');
-},function(response){
-	if(response.status==401)
-		{
-		console.log(response.message);
-		delete $rootScope.currentUser;
-		console.log(" CURRENT USER");
-		console.log("DELETED CURRENT USER");
-		$cookieStore.remove('userDetails');
-		console.log("REMOVE CURRENT USER");
-
-		$location.path('/login');
-		}
 	
 	
-	
-})
-	}
 
 });

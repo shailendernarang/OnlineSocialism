@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,11 +25,9 @@ import com.ss.SocialistB.model.User;
 import com.ss.SocialistB.service.BlogCommentService;
 import com.ss.SocialistB.service.UserService;
 
-@RestController
+@Controller
 public class BlogCommentController {
 	
-	@Autowired
-	BlogCommentDAO blogCommentDAO;
 	@Autowired
 	BlogCommentService blogCommentService;
 	
@@ -63,14 +62,14 @@ public class BlogCommentController {
 		
 	}
 
-	@PutMapping("/editBlogComment/{blogCommentID}")
-	public ResponseEntity<String> editBlog (@PathVariable("blogCommentID")Integer blogId)
-	{
-		
-		BlogComment blogComment = blogCommentDAO.getBlogComment(blogId);
-		blogCommentDAO.editBlogComment(blogComment);
-		return new ResponseEntity<String> ("Blog Edited",HttpStatus.ACCEPTED);
-	}
+//	@PutMapping("/editBlogComment/{blogCommentID}")
+//	public ResponseEntity<String> editBlog (@PathVariable("blogCommentID")Integer blogId)
+//	{
+//		
+//		BlogComment blogComment = blogCommentService.getBlogComment(blogId);
+//		blogCommentService.editBlogComment(blogComment);
+//		return new ResponseEntity<String> ("Blog Edited",HttpStatus.ACCEPTED);
+//	}
 	@GetMapping("/getBlogComments/{blogId}")
 	public  ResponseEntity<?> getBlogComments  (@PathVariable int blogId,HttpSession httpSession)
 	{
@@ -88,13 +87,13 @@ public class BlogCommentController {
 		return new ResponseEntity<List<BlogComment>>(blogComments,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deleteBlogComment/{blogID}")
-	public ResponseEntity<String> deleteBlogComment (@PathVariable("blogID")Integer blogId,@RequestBody BlogComment blogComment)
-	{
-		blogCommentDAO.deleteBlogComment(blogId);
-		return new ResponseEntity<String> ("Blog Deleted",HttpStatus.ACCEPTED);
-
-	}
+//	@DeleteMapping("/deleteBlogComment/{blogID}")
+//	public ResponseEntity<String> deleteBlogComment (@PathVariable("blogID")Integer blogId,@RequestBody BlogComment blogComment)
+//	{
+//		blogCommentDAO.deleteBlogComment(blogId);
+//		return new ResponseEntity<String> ("Blog Deleted",HttpStatus.ACCEPTED);
+//
+//	}
 	
 	
 }

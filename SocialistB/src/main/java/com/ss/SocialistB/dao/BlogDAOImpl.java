@@ -68,7 +68,7 @@ public class BlogDAOImpl implements BlogDAO {
 					querys="from Blog where  rejectionReason is null and blogStatus="+approved;
 
 		Query query = session.createQuery(querys);
-		List<Blog> list=query.getResultList();
+		List<Blog> list=query.list();
 		return list;
 	}
 	
@@ -82,7 +82,7 @@ public class BlogDAOImpl implements BlogDAO {
 		Session session =sessionFactory.openSession();
 		
 		Query query = session.createQuery("from Blog where rejectionReason!=null and blogStatus="+rejected);
-		List<Blog> list=query.getResultList();
+		List<Blog> list=query.list();
 		return list;
 	}
 	
