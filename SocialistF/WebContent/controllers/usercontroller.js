@@ -70,5 +70,5 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 	}
 	
 	
-
+	 
 });

@@ -1,5 +1,6 @@
 
 
+
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
@@ -27,10 +28,14 @@
                 </div>
             </div>
         </div>
-</div>
-</div>
+        <div class="container">
+<form class="form-group">
 
-    
+<textarea rows="5" cols="20" ng-model="blogComment.blogCommentText" class="form-control"></textarea>
+</div>
+<input type="submit" value="Post" ng-click="addComment()" class="btn btn-success">
+    </form>    
+</div>
     
 <div class="container">
 	<div class="row">
@@ -42,13 +47,11 @@
 				<div class="comment-main-level" ng-repeat="blogs in blogComments" ng-init="getBlogComments()" >
 					<!-- Avatar -->
 					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-					<!-- Contenedor del Comentario -->
 					<div class="comment-box" >
 						<div class="comment-head">
 							<h6 class="comment-name by-author"><a>{{blogs.postedBy.firstName}}</a></h6>
 							<span>{{blogs.blogCommentDate|date:'dd.MM.y hh:mm'}}</span>
-							<i class="fa fa-reply"></i>
-							<i class="fa fa-heart"></i>
+					
 						</div>
 						<div class="comment-content">
 						{{blogs.blogCommentText}}

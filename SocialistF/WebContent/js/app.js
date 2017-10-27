@@ -43,10 +43,7 @@ app.config(function($routeProvider){
 			templateUrl:'views/getAllJobs.html',
 			controller:'JobController'
 		})
-		.when('/uploadProfilePic',{
-			templateUrl:'views/uploadProfilePic.html'
-			
-		})
+		
 		.when('/pendingRequests',{
 			templateUrl:'views/pendingRequest.html',
 			controller:'FriendController'
