@@ -70,7 +70,7 @@ public class UserController {
 	@RequestMapping(value="/logout",method=RequestMethod.PUT)
 	public ResponseEntity<?> logout(HttpSession session)
 	{
-		String firstName=session.getAttribute("firstName").toString();
+		String firstName=(String)session.getAttribute("firstName");
 		if(firstName==null) {
 			Error error = new Error(7,"UNAUTHORIZED");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);

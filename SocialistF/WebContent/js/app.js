@@ -57,6 +57,7 @@ app.config(function($routeProvider){
 			templateUrl:'views/listoffriends.html',
 			controller:'FriendController'
 		})
+		
 		.otherwise({
 			templateUrl:'views/home.html'
 		})

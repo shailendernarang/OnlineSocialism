@@ -28,6 +28,8 @@ public class User implements Serializable
 	private String emailID;
 	private String role;
 	private String status;
+
+
 	private boolean isOnline;
 	
 	public String getFirstName() {

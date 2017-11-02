@@ -33,6 +33,16 @@ public class Blog implements Serializable {
 	private User postedBy;
 	private boolean blogStatus;
 	private int likes;
+	private int dislikes;
+	public int getDislikes() {
+		return dislikes;
+	}
+	public void setDislikes(int dislikes) {
+		this.dislikes = dislikes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
 	private Date createDate;
 	private String rejectionReason;
 	public Integer getBlogID() {

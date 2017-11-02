@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ss.SocialistB.model.BlogComment;
 
+@SuppressWarnings("deprecation")
 @Repository("blogCommentDAO")
 @Transactional
 public class BlogCommentDAOImpl implements BlogCommentDAO {
@@ -42,6 +43,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 	public BlogComment getBlogComment(Integer blogCommentID) {
 		Session s1 =sessionFactory.getCurrentSession();
 
+		@SuppressWarnings("rawtypes")
 		Query q = s1.createQuery("from BlogComment where blogCommentID="+blogCommentID);
 	    BlogComment b = (BlogComment)q.uniqueResult();
 	    return b;
@@ -49,6 +51,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 
 	public List<BlogComment> getAllBlogComments() {
 		Session session =sessionFactory.openSession();
+		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery("from BlogComment");
 		List<BlogComment> list=query.list();
 		return list;

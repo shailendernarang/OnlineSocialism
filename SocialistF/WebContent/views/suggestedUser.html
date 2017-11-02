@@ -1,7 +1,9 @@
 <table class="table table-striped">
 <tbody>
 <tr ng-repeat="request in suggestedUsers">
-	<td>{{request.firstName}}</td>
+	<td><div class="avatar" ><img height="100px" width="100px" ng-src="http://localhost:8087/SocialistF/resources/img/{{request.firstName}}.jpg" alt="No Image" onerror=this.src="http://style.anu.edu.au/_anu/4/images/placeholders/person.png"></div></td>
+	<td align="center">{{request.firstName}}</td>
+	<td>{{request.role}}</td>
 	<td><a class="btn btn-primary" ng-click="sendFriendRequest(request.firstName)">Add</a></td>
 	
 	

@@ -1,9 +1,14 @@
 package com.ss.SocialistM.config;
 
+
+
+import javax.servlet.ServletRegistration;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebIntializer extends AbstractAnnotationConfigDispatcherServletInitializer
 {
+
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -23,6 +28,4 @@ public class WebIntializer extends AbstractAnnotationConfigDispatcherServletInit
 		return new String[] {"/"};
 	}
 
-	
-	
 }

@@ -31,6 +31,16 @@ BlogDAO blogDao;
 		return blogDao.getAllBlogsRejected(rejected);
 	}
 
+	public void increaseLikes(int blogId) {
+		blogDao.increaseLikes(blogId);
+		
+	}
+
+	public void increaseDislikes(int blogId) {
+		blogDao.increaseDislikes(blogId);
+		
+	}
+
 	
 
 

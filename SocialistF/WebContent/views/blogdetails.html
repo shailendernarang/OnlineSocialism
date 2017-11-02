@@ -7,7 +7,7 @@
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
                     <div class="pull-left image">
-                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                        <img src="http://localhost:8087/SocialistF/resources/img/{{blog.postedBy.firstName}}.jpg"  class="img-circle avatar" >
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
@@ -20,17 +20,24 @@
                 <div class="post-description"> 
                     <p>{{blog.blogContent}}</p>
                     <div class="stats">
-                        <a  class="btn btn-default stat-item" ng-class="isLiked?'liked':'default'" ng-click="updateLike()">
-                            <i class="fa fa-thumbs-up icon"></i>{{blog.likes}}
-                        </a>
-                       
+                       <a href="" type="button"
+							class="w3-btn w3-theme-d1 w3-margin-bottom"
+							data-ng-click="upvoteBlog(blog.blogID)"> <i
+							class="fa fa-thumbs-up"> {{blog.likes}}</i> Like
+						</a> <a href="" type="button"
+							class="w3-btn w3-theme-d1 w3-margin-bottom"
+							data-ng-click="downvoteBlog(blog.blogID)"> <i
+							class="fa fa-thumbs-down"> {{blog.dislikes}}</i> Dislike
+						</a>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+      
         <div class="container">
 <form class="form-group">
-
+<div>
 <textarea rows="5" cols="20" ng-model="blogComment.blogCommentText" class="form-control"></textarea>
 </div>
 <input type="submit" value="Post" ng-click="addComment()" class="btn btn-success">
@@ -39,17 +46,17 @@
     
 <div class="container">
 	<div class="row">
-	<!-- Contenedor Principal -->
+
     <div class="comments-container">
 
 		<ul id="comments-list" class="comments-list">
 			<li>
 				<div class="comment-main-level" ng-repeat="blogs in blogComments" ng-init="getBlogComments()" >
 					<!-- Avatar -->
-					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+					<div class="comment-avatar"><img src="http://localhost:8087/SocialistF/resources/img/{{blogs.postedBy.firstName}}.jpg" alt=""></div>
 					<div class="comment-box" >
 						<div class="comment-head">
-							<h6 class="comment-name by-author"><a>{{blogs.postedBy.firstName}}</a></h6>
+							<h6 class="comment-name"><a>{{blogs.postedBy.firstName}}</a></h6>
 							<span>{{blogs.blogCommentDate|date:'dd.MM.y hh:mm'}}</span>
 					
 						</div>

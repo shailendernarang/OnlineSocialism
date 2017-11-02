@@ -17,6 +17,13 @@ public class Friend {
 	private String fromID;
 	private String toID;
 	private char status;
+	private boolean isOnline;
+	public boolean isOnline() {
+		return isOnline;
+	}
+	public void setOnline(boolean isOnline) {
+		this.isOnline = isOnline;
+	}
 	public int getFriendID() {
 		return friendID;
 	}

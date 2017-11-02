@@ -3,9 +3,6 @@
 <html>
 <head>
 <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   
 </head>
 <body>
@@ -29,6 +26,7 @@
 <input type="email" ng-model="user.emailID" placeholder="emailID" class="form-control" required="required">
 <span style="color:red" ng-if="error.code==3">{{error.message}}</span>
 </div>
+
 
 <div ng-hide="user.role=='ADMIN'"class="radio">
 <input type="radio" ng-model="user.role" value="Student">Student</div>

@@ -12,6 +12,8 @@ public interface BlogDAO {
 	public Blog getBlog(Integer blogID);
 	public List<Blog> getAllBlogs(int approved);
 	public List<Blog> getAllBlogsRejected(int rejected);
-
+	void increaseLikes(int blogId);
+	
+	void increaseDislikes(int blogId);
 	public void approveBlog(Blog blog);
 }

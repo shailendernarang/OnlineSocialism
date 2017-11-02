@@ -16,11 +16,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.ss.SocialistB.model.Blog;
 import com.ss.SocialistB.model.BlogComment;
-import com.ss.SocialistB.model.Forum;
-import com.ss.SocialistB.model.ForumComment;
 import com.ss.SocialistB.model.Friend;
 import com.ss.SocialistB.model.Job;
-import com.ss.SocialistB.model.ProfilePicture;
+import com.ss.SocialistB.model.UploadFile;
 import com.ss.SocialistB.model.User;
 
 @Configuration
@@ -66,12 +64,11 @@ public class HibernateConfig {
 		
 		localSessionFactoryBuilder.addAnnotatedClass(Blog.class);
 		localSessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
-		localSessionFactoryBuilder.addAnnotatedClass(Forum.class);
-		localSessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
+
 		localSessionFactoryBuilder.addAnnotatedClass(User.class);
 		localSessionFactoryBuilder.addAnnotatedClass(Job.class);
-		localSessionFactoryBuilder.addAnnotatedClass(ProfilePicture.class);
 		localSessionFactoryBuilder.addAnnotatedClass(Friend.class);
+		localSessionFactoryBuilder.addAnnotatedClass(UploadFile.class);
 		return localSessionFactoryBuilder.buildSessionFactory();
 	}
 

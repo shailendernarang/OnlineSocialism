@@ -52,5 +52,26 @@ blogService.getBlogComments = function(id)
 	return $http.get(BASE_URL+"/getBlogComments/"+id)
 
 }
+blogService.upvoteBlog = function(id) {
+	console.log('entering upvote service')
+	return $http.get(BASE_URL + "/upvote/" + id).then(
+			function(response) {
+				console.log(response.status)
+				return response.status
+			}, function() {
+				console.log(reponse.status)
+			})
+};
+
+blogService.downvoteBlog = function(id) {
+	console.log('entering downvote service')
+	return $http.get(BASE_URL + "/downvote/" + id).then(
+			function(response) {
+				console.log(response.status)
+				return response.status
+			}, function() {
+				console.log(reponse.status)
+			})
+};
 	return blogService;
 })

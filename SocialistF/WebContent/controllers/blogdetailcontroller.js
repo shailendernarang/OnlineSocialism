@@ -1,7 +1,7 @@
 /**
  * 
  */
-app.controller('BlogDetailController',function($scope,BlogService,$location,$routeParams){
+app.controller('BlogDetailController',function($scope,BlogService,$location,$routeParams,$window){
 	$scope.isRejected=false
 	var id=$routeParams.id;
 	$scope.isLiked=false;
@@ -33,23 +33,7 @@ app.controller('BlogDetailController',function($scope,BlogService,$location,$rou
 		$scope.isRejected=val;
 	}
 	
-	$scope.updateLike = function()
-	{
-		$scope.isLiked=!$scope.isLiked
-		if($scope.isLiked)
-			{
-				$scope.blog.likes =$scope.blog.likes+1;
-			}
-		else
-			{
-			$scope.blog.likes = $scope.blog.likes-1;
-			}
-		BlogService.approve($scope.blog).then(function(response){
-		
-		},function(response){
-			
-		})
-	}
+
 	
 	$scope.addComment = function()
 	{
@@ -72,7 +56,27 @@ app.controller('BlogDetailController',function($scope,BlogService,$location,$rou
 			$location.path('/getBlogByID/'+$scope.blog.blogID)
 		})
 	}
-	
+	$scope.upvoteBlog = function(blogId) {
+		console.log('entering upvote controller')
+		BlogService.upvoteBlog(blogId).then(function() {
+			console.log('Upvoted')
+			$window.location.reload().notify(false);
+		}, function() {
+			console.log('unable to upvote')
+		})
+	};
+
+	$scope.downvoteBlog = function(blogId) {
+		console.log('entering upvote controller')
+		BlogService.downvoteBlog(blogId).then(function() {
+			console.log('downvoted')
+						$window.location.reload().notify(false);
+
+			
+		}, function() {
+			console.log('unable to downvote')
+		})
+	};
 getBlogComments()
 	
 })

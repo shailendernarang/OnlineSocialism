@@ -85,6 +85,27 @@ public class BlogDAOImpl implements BlogDAO {
 		List<Blog> list=query.list();
 		return list;
 	}
+
+	public void increaseLikes(int blogId) {
+		Session session = sessionFactory.openSession();
+		System.out.println("---starting likes ");
+		Blog blog = getBlog(blogId);
+		System.out.println("Before Like: "+ blog.getLikes());
+		blog.setLikes(blog.getLikes() + 1);
+		System.out.println("After Like: "+ blog.getLikes());
+		session.update(blog);
+		
+	}
+
+	public void increaseDislikes(int blogId) {
+		Session session = sessionFactory.openSession();
+		System.out.println("---starting dislikes ");
+		Blog blog = getBlog(blogId);
+		System.out.println("Before Dislike: "+ blog.getDislikes());
+		blog.setDislikes(blog.getDislikes() + 1);
+		System.out.println("After Dislike: "+ blog.getDislikes());
+		session.update(blog);
+			}
 	
 
 }

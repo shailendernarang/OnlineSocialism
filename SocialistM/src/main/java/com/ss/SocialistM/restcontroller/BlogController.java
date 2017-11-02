@@ -1,6 +1,5 @@
 package com.ss.SocialistM.restcontroller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -169,5 +167,19 @@ public class BlogController
 		
 		List<Blog> blog=blogService.getAllBlogsRejected(rejected);
 		return new ResponseEntity<List<Blog>>(blog,HttpStatus.ACCEPTED);
+	}
+
+	@RequestMapping(value = "/upvote/{blogId}", method = RequestMethod.GET)
+	public ResponseEntity<Blog> upvote(@PathVariable int blogId) {
+		System.out.println("Starting upvote method in controller");
+		blogService.increaseLikes(blogId);
+		return new ResponseEntity<Blog>(HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/downvote/{blogId}", method = RequestMethod.GET)
+	public ResponseEntity<Blog> downvote(@PathVariable int blogId) {
+		System.out.println("Starting downvote method in controller");
+		blogService.increaseDislikes(blogId);
+		return new ResponseEntity<Blog>(HttpStatus.OK);
 	}
 }
