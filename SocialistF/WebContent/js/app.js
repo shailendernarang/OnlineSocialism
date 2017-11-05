@@ -9,7 +9,8 @@ app.config(function($routeProvider){
 			controller:'UserController'
 		})
 		.when('/home',{
-			templateUrl:'views/home.html'
+			templateUrl:'views/home.html',
+			controller:'BlogController'
 		})
 		.when('/login',{
 			templateUrl:'views/login.html',
@@ -44,10 +45,6 @@ app.config(function($routeProvider){
 			controller:'JobController'
 		})
 		
-		.when('/pendingRequests',{
-			templateUrl:'views/pendingRequest.html',
-			controller:'FriendController'
-		})
 		.when('/getSuggestedUsers',{
 			templateUrl:'views/suggestedUser.html',
 			controller:'FriendController'
@@ -57,6 +54,11 @@ app.config(function($routeProvider){
 			templateUrl:'views/listoffriends.html',
 			controller:'FriendController'
 		})
+		.when('/approvalForm',{
+			templateUrl:'views/approvalForm.html',
+			controller:'BlogController'
+		})
+		
 		
 		.otherwise({
 			templateUrl:'views/home.html'
@@ -69,14 +71,14 @@ app.run(function($rootScope,$cookieStore,UserService,$location){
 		
 	}
 	$rootScope.logout = function()
-	{
-		delete $rootScope.currentUser;
+	{delete $rootScope.currentUser;
 		UserService.logout()
 		.then(function(response){
 			console.log(" CURRENT USER");
 			
 
-	$cookieStore.remove($rootScope.currentUser);
+			
+	$cookieStore.remove('userDetails');
 	console.log("REMOVE CURRENT USER");
 	
 	$location.path('/login');

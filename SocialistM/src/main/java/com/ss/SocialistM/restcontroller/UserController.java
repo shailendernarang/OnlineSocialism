@@ -1,5 +1,7 @@
 package com.ss.SocialistM.restcontroller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,6 +125,14 @@ public class UserController {
 			return new ResponseEntity<Error>(error,HttpStatus.BAD_GATEWAY);
 
 		}
+	}
+	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> getAllUsers() {
+		System.out.println("-----Starting getAllUsers method in Controller");
+		List<User> users = userService.getAllUser();
+		System.out.println("------Ending getAllUsers method in Controller");
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+
 	}
 
  }

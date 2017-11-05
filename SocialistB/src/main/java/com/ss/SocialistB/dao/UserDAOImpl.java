@@ -88,5 +88,12 @@ public class UserDAOImpl implements UserDao {
 
 	}
 
-	
+	@Transactional
+	public List<User> getAllUser() {
+		System.out.println("Starting getAllUsers DaoImpl");
+		String hql = "from User";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		System.out.println("Ending UserDao getAllUser");
+		return query.list();
+	}
 }

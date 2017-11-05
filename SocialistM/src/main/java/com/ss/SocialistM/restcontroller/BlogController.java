@@ -122,13 +122,13 @@ public class BlogController
 	@RequestMapping(value="/getAllBlogs/{approved}",method=RequestMethod.GET)
 	public ResponseEntity<?> getAllBlogs (@PathVariable int approved,HttpSession httpSession)
 	{
-		String userName=(String)httpSession.getAttribute("firstName");
-		Error error= new Error(11,"Unauthroized Access");
-		
-		if(userName==null)
-		{
-			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
-		}
+//		String userName=(String)httpSession.getAttribute("firstName");
+//		Error error= new Error(11,"Unauthroized Access");
+//		
+//		if(userName==null)
+//		{
+//			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+//		}
 		
 		List<Blog> blog=blogDAO.getAllBlogs(approved);
 		return new ResponseEntity<List<Blog>>(blog,HttpStatus.ACCEPTED);

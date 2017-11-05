@@ -26,7 +26,7 @@ app.controller('BlogController',function($scope,BlogService,$location){
 			
 			$scope.listOfBlogsApproved = response.data
 		},function(response){
-			$location.path('/login')
+		
 			
 		})
 	}
@@ -35,7 +35,7 @@ app.controller('BlogController',function($scope,BlogService,$location){
 		BlogService.blogsWaitingForApproval().then(function(response){
 			$scope.listOfBlogsWaitingForApproval = response.data
 		},function(response){
-			$location.path('/login')
+			
 			
 		})
 		}
@@ -45,7 +45,7 @@ app.controller('BlogController',function($scope,BlogService,$location){
 			
 			$scope.listOfBlogsRejected = response.data
 		},function(response){
-			$location.path('/login')
+			
 			
 		})
 	}

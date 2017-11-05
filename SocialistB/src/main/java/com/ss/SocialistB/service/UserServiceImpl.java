@@ -42,4 +42,9 @@ private UserDao userDao;
 		return userDao.isUpdatedEmailValid(email, username);
 	}
 
+	public List<User> getAllUser() {
+		// TODO Auto-generated method stub
+		return userDao.getAllUser();
+	}
+
 }

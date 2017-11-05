@@ -75,5 +75,5 @@ public class FriendDAOImpl implements FriendDAO {
 		return list1;
 	}
 	
+	
 }
-

@@ -2,9 +2,56 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Blog</title>
 </head>
 <body>
-<b>HomePAGE</b>
+
+	<div class="w3-container w3-content "
+		style="max-width: 1400px; margin-top: 20px ;margin-left:150px;">
+		<!-- The Grid -->
+		<div class="w3-row">
+
+	
+		
+			<!-- Middle Column -->
+			<div class="w3-col m7">
+
+<!-- 				<div class="w3-row-padding"> -->
+<!-- 					<div class="w3-col m12"> -->
+<!-- 						<div class="w3-card-2 w3-round w3-white"> -->
+<!-- 							<div class="w3-container w3-padding"> -->
+<!-- 								<input type="text" class="w3-border w3-padding " -->
+<!-- 									placeholder="Search Blogs" style="width: 600px" -->
+<!-- 									data-ng-model="blogSearch"></input> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+				<div class="w3-container w3-card-2 w3-white w3-round w3-margin"
+					data-ng-repeat="b in listOfBlogsApproved">
+					<br> <span class="w3-right w3-opacity">{{b.createDate|date:'dd/MM/yy'}}</span>
+
+					<div class="w3-left">
+						<img style="margin-right: 20px;"
+							ng-src="http://localhost:8087/SocialistF/resources/img/{{b.postedBy.firstName}}"
+							class="img-circle" width="50" height="50">
+					</div>
+					<h4>{{b.postedBy.userName}}</h4>
+					<br>
+					<hr class="w3-clear">
+					<p>{{b.blogContent}}.</p>
+
+					</div>
+
+				
+
+				<!-- End Middle Column -->
+		
+				<!-- End Right Column -->
+			</div>
+			</div>
+			</div>
+			
 </body>
 </html>

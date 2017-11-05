@@ -1,0 +1,20 @@
+<div ng-show="currentUser.role=='ADMIN'">
+<b>List Of Waiting for Approval</b>
+<table class="table table-striped">
+<thead>
+<tr><th>Blog Title</th><th>Author</th><th>Content</th><th>Posted On</th></tr>
+</thead>
+<tbody>
+<tr ng-repeat="blogs in listOfBlogsWaitingForApproval">
+
+<td><a href="#!/getApprovalForm/{{blogs.blogID}}">{{blogs.blogName}}</a></td>
+<td>{{blogs.postedBy.firstName}}</td>
+<td>{{blogs.blogContent}}</td>
+<td>{{blogs.createDate | date :'yyyy/MM/dd'}}</td>
+
+<tr>
+
+</tbody>
+
+</table>
+</div>

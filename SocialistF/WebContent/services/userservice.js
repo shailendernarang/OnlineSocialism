@@ -13,6 +13,11 @@ app.factory('UserService',function($http){
 		return $http.post(BASE_URL+"/registeruser",user);
 		
 	}
+	userService.fetchAllUsers = function() {
+
+		console.log('----entering getAllUsers')
+		return $http.get(BASE_URL + "/getAllUsers")
+	}
 	userService.login = function(user){
 		
 		return $http.post(BASE_URL+"/login",user);

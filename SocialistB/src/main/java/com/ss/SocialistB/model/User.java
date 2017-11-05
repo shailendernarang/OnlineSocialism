@@ -22,6 +22,13 @@ public class User implements Serializable
 	@Id
 	@Column(unique=true,nullable=false)
 	private String firstName;
+	private String userName;
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	private String lastName;
 	private String password;
 	@Column(unique=true,nullable=false)

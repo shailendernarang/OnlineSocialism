@@ -1,5 +1,7 @@
 package com.ss.SocialistB.service;
 
+import java.util.List;
+
 import com.ss.SocialistB.model.User;
 
 public interface UserService {
@@ -11,6 +13,6 @@ public interface UserService {
 	public void update(User user);
 	User getUserByUserName(String firstName);
 	public boolean isUpdatedEmailValid(String email,String username);
-
+	List<User> getAllUser();
 	
 }

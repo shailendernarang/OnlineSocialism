@@ -1,58 +1,81 @@
-<div ng-show="currentUser.role=='ADMIN'">
-<b>List Of Waiting for Approval</b>
-<table class="table table-striped">
-<thead>
-<tr><th>Blog Title</th><th>Author</th><th>Content</th><th>Posted On</th></tr>
-</thead>
-<tbody>
-<tr ng-repeat="blogs in listOfBlogsWaitingForApproval">
+<div ng-show="currentUser.role=='ADMIN' && listOfBlogsWaitingForApproval!=0 " class="w3-container">
+<b >List of Blogs Waiting for approval</b>
 
-<td><a href="#!/getApprovalForm/{{blogs.blogID}}">{{blogs.blogName}}</a></td>
-<td>{{blogs.postedBy.firstName}}</td>
-<td>{{blogs.blogContent}}</td>
-<td>{{blogs.createDate | date :'yyyy/MM/dd'}}</td>
-<tr>
+ <ul class="w3-ul w3-card-4" ng-repeat="blogs in listOfBlogsWaitingForApproval">
+    <li class="w3-bar">
+      
+      
+      <div class="w3-bar-item">
+        <span class="w3-large">{{blogs.postedBy.userName}}</span><br>
+        <span>{{blogs.createDate | date :'yyyy/MM/dd'}}</span>
+        
+      </div>
+      
+      <div style=" margin-right:45%" class="w3-bar-item">
+      	  
+      	  		<span class="w3-large">{{blogs.blogContent}}</span>
+      </div>
+     
+       <div style="float:right;"class="w3-bar-item">
+      	  <a class="w3-btn w3-theme-a1" href="#!/getApprovalForm/{{blogs.blogID}}">
+      	  		<span class="w3-large">Approve Blog</span></a>
+      </div>
+      
+    </li>
+    </ul>
 
-</tbody>
 
-</table>
 </div>
-<div>
-<b>List of Blogs Approved</b>
-<table class="table table-striped">
-<thead>
-<tr><th>Blog Title</th><th>Author</th><th>Content</th><th>Posted On</th></tr>
-</thead>
-<tbody>
-<tr ng-repeat="blogs in listOfBlogsApproved">
-<td><a href="#!/getBlogByID/{{blogs.blogID}}">{{blogs.blogName}}</a></td>
-<td>{{blogs.postedBy.firstName}}</td>
-<td>{{blogs.blogContent}}</td>
-<td>{{blogs.createDate | date :'yyyy/MM/dd'}}</td>
 
-						
-<tr>
 
-</tbody>
+<div class="w3-container">
+<b ng-show="currentUser.role=='ADMIN'">List of Blogs Approved</b>
 
-</table>
+ <ul class="w3-ul w3-card-4" ng-repeat="blogs in listOfBlogsApproved">
+    <li class="w3-bar">
+      
+      
+      <div class="w3-bar-item">
+        <span class="w3-large">{{blogs.postedBy.userName}}</span><br>
+        <span>{{blogs.createDate | date :'yyyy/MM/dd'}}</span>
+        
+      </div>
+      
+      <div style=" margin-right:45%" class="w3-bar-item">
+      	  
+      	  		<span class="w3-large">{{blogs.blogContent}}</span>
+      </div>
+     
+       <div style="float:right;"class="w3-bar-item">
+      	  <a class="w3-btn w3-theme-a1" href="#!/getBlogByID/{{blogs.blogID}}">
+      	  		<span class="w3-large">Post Comments</span></a>
+      </div>
+    </li>
+    </ul>
+
+
 </div>
-<div  ng-show="currentUser.role=='ADMIN'">
-<b>List of Blogs Rejected</b>
-<table class="table table-striped">
-<thead>
-<tr><th>Blog Title</th><th>Author</th><th>Content</th><th>Posted On</th></tr>
-</thead>
-<tbody>
-<tr ng-repeat="blogs in listOfBlogsRejected">
-<td>{{blogs.blogName}}</td>
-<td>{{blogs.postedBy.firstName}}</td>
-<td>{{blogs.blogContent}}</td>
-<td>{{blogs.createDate | date :'yyyy/MM/dd'}}</td>
+<div ng-show="currentUser.role=='ADMIN'" class="w3-container">
+<b >List of Blogs Rejected</b>
 
-<tr>
+ <ul class="w3-ul w3-card-4" ng-repeat="blogs in listOfBlogsRejected">
+    <li class="w3-bar">
+      
+      
+      <div class="w3-bar-item">
+        <span class="w3-large">{{blogs.postedBy.userName}}</span><br>
+        <span>{{blogs.createDate | date :'yyyy/MM/dd'}}</span>
+        
+      </div>
+      
+      <div style=" margin-right:45%" class="w3-bar-item">
+      	  
+      	  		<span class="w3-large">{{blogs.blogContent}}</span>
+      </div>
+     
+      
+    </li>
+    </ul>
 
-</tbody>
 
-</table>
 </div>

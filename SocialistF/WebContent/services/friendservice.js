@@ -23,5 +23,6 @@ app.factory('FriendService',function($http){
 	{
 		return $http.get(BASE_URL+"/listOfFriends")
 	}
+	
 	return friendService;
 })

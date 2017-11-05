@@ -1,5 +1,6 @@
-app.controller('FriendController',function($scope,$location,FriendService){
+app.controller('FriendController',function($scope,$location,FriendService,$routeParams){
 
+	var id=$routeParams.id;
 	function listOfSuggestedUsers(){
 	FriendService.listOfSuggestedUsers().then(function(response){
 		$scope.suggestedUsers= response.data;
@@ -20,6 +21,7 @@ app.controller('FriendController',function($scope,$location,FriendService){
 		FriendService.sendFriendRequest(toID).then(function(response){
 			alert("SENT Successfully");
 			listOfSuggestedUsers()
+			
 			$location.path('/getSuggestedUsers')
 		},function(response){
 			$location.path('/login')
@@ -30,7 +32,8 @@ app.controller('FriendController',function($scope,$location,FriendService){
 		request.status=statusValue;
 		FriendService.updatePendingRequest(request).then(function(response){
 			pendingRequests()
-			$location.path('/pendingRequests')
+			listOfFriends()
+			$location.path('/listOfFriends')
 		},function(response){
 			
 		})
@@ -44,6 +47,7 @@ app.controller('FriendController',function($scope,$location,FriendService){
 			
 		})
 	}
+
 	listOfSuggestedUsers()
 	pendingRequests()
 	listOfFriends()

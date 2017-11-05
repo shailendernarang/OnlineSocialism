@@ -36,4 +36,6 @@ public class FriendServiceImpl implements FriendService {
 		return friendDAO.listOfFriends(userName);
 	}
 
+	
+
 }

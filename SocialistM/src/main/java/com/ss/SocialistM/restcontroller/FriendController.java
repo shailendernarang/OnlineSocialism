@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ss.SocialistB.model.Blog;
 import com.ss.SocialistB.model.Error;
 import com.ss.SocialistB.model.Friend;
 import com.ss.SocialistB.model.User;
@@ -89,5 +91,5 @@ FriendService friendService;
 		List<String> list = friendService.listOfFriends(userName);
 		return new ResponseEntity<List<String>>(list,HttpStatus.OK);
 	}
+	
 }
-                              

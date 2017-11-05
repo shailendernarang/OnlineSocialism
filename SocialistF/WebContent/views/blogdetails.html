@@ -7,7 +7,7 @@
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
                     <div class="pull-left image">
-                        <img src="http://localhost:8087/SocialistF/resources/img/{{blog.postedBy.firstName}}.jpg"  class="img-circle avatar" >
+                        <img ng-src="http://localhost:8087/SocialistF/resources/img/{{blog.postedBy.firstName}}"  onerror="this.src='https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-128.png';" class="img-circle avatar" >
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
@@ -53,7 +53,7 @@
 			<li>
 				<div class="comment-main-level" ng-repeat="blogs in blogComments" ng-init="getBlogComments()" >
 					<!-- Avatar -->
-					<div class="comment-avatar"><img src="http://localhost:8087/SocialistF/resources/img/{{blogs.postedBy.firstName}}.jpg" alt=""></div>
+					<div class="comment-avatar"><img ng-src="http://localhost:8087/SocialistF/resources/img/{{blogs.postedBy.firstName}}"  onerror="this.src='https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-128.png';"></div>
 					<div class="comment-box" >
 						<div class="comment-head">
 							<h6 class="comment-name"><a>{{blogs.postedBy.firstName}}</a></h6>
@@ -69,5 +69,3 @@
 				</ul>
 				</div>
 				</div>
-				</div>
-				
