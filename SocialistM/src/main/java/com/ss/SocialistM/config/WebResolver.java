@@ -34,6 +34,19 @@ public class WebResolver
 		configurer.enable();
 	}
 	
+	@Bean
+	public WebContentInterceptor webContentInterceptor() {
+		WebContentInterceptor interceptor = new WebContentInterceptor();
+		interceptor.setCacheSeconds(0);
+		interceptor.setUseExpiresHeader(true);
+		interceptor.setUseCacheControlHeader(true);
+		interceptor.setUseCacheControlNoStore(true);
+		return interceptor;
+	}
+
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(webContentInterceptor());
+	}
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver getCommonsMultipartResolver() {
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();

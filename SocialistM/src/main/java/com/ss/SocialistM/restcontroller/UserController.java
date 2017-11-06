@@ -80,7 +80,7 @@ public class UserController {
 		User user = userService.getUserByUserName(firstName);
 		user.setOnline(false);
 		userService.update(user);
-		session.removeAttribute("userDetails");
+		session.removeAttribute("firstName");
 		session.invalidate();
 		return new ResponseEntity<String>("Logout",HttpStatus.ACCEPTED);
 	}

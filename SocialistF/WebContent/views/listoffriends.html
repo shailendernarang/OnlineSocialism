@@ -30,6 +30,10 @@
 							<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
 							{{currentUser.role}}
 						</p>
+						<p>
+							<i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>
+							{{listOfFriends.length}} Friends
+						</p>
 						
 					</div>
 				</div>
@@ -87,7 +91,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="w3-container w3-card-5 w3-white w3-round w3-margin"
+		<div class="w3-container w3-card-2 w3-white w3-round w3-margin" ng-show="listOfFriends==0">Alone? Send Some Friend Request</div>
+				<div class="w3-container w3-card-1 w3- w3-round w3-margin"
 					data-ng-repeat="mf in listOfFriends | filter:search">
 					
 					<br>

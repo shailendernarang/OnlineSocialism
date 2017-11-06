@@ -58,8 +58,11 @@ app.config(function($routeProvider){
 			templateUrl:'views/approvalForm.html',
 			controller:'BlogController'
 		})
-		
-		
+		.when('/chat',{
+			templateUrl:'views/chat.html',
+			controller:'ChatController'
+		})
+	
 		.otherwise({
 			templateUrl:'views/home.html'
 		})
@@ -71,21 +74,19 @@ app.run(function($rootScope,$cookieStore,UserService,$location){
 		
 	}
 	$rootScope.logout = function()
-	{delete $rootScope.currentUser;
+	{
+		$cookieStore.remove('userDetails');
+		delete $rootScope.currentUser;
+		$location.path('/login');
 		UserService.logout()
 		.then(function(response){
-			console.log(" CURRENT USER");
-			
-
-			
-	$cookieStore.remove('userDetails');
-	console.log("REMOVE CURRENT USER");
 	
-	$location.path('/login');
+	
+	$scope.error = "Logout out Successfully";
 },function(response){
 	if(response.status==401)
 		{
-		console.log(response.message);
+		
 		delete $rootScope.currentUser;
 		$cookieStore.remove('userDetails');
 		console.log("REMOVE CURRENT USER");

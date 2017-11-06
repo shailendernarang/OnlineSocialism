@@ -18,6 +18,7 @@ import com.ss.SocialistB.model.Blog;
 import com.ss.SocialistB.model.BlogComment;
 import com.ss.SocialistB.model.Friend;
 import com.ss.SocialistB.model.Job;
+
 import com.ss.SocialistB.model.UploadFile;
 import com.ss.SocialistB.model.User;
 
@@ -69,6 +70,7 @@ public class HibernateConfig {
 		localSessionFactoryBuilder.addAnnotatedClass(Job.class);
 		localSessionFactoryBuilder.addAnnotatedClass(Friend.class);
 		localSessionFactoryBuilder.addAnnotatedClass(UploadFile.class);
+		
 		return localSessionFactoryBuilder.buildSessionFactory();
 	}
 

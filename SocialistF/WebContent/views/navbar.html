@@ -48,7 +48,7 @@
 							<li  ng-show="currentUser.role=='ADMIN'"><a href="#!/addJob">Add Job</a></li>
 						
 						</ul></li>
-					<li><a href="#/chatPage">Chat</a></li>
+					<li><a href="#!/chat">Chat</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -62,7 +62,7 @@
 
 						</ul></li>
 					<li data-ng-show="currentUser"><a href="" data-toggle="modal" data-target="#myModal" >
-						<img class="img img-responsive" ng-src="http://localhost:8087/SocialistF/resources/img/{{currentUser.firstName}}" alt="Upload "style="width:45px;height:45px;margin-top: -10px;"></a>
+						<img class="img img-responsive" ng-src="http://localhost:8087/SocialistF/resources/img/{{currentUser.firstName}}" onerror="this.src='https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png'"style="width:45px;height:45px;margin-top: -10px;"></a>
 					<li data-ng-hide="currentUser"><a href="#!/register"><span
 							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 					<li data-ng-hide="currentUser"><a href="#!/login"><span

@@ -29,7 +29,10 @@
 							<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
 							{{currentUser.role}}
 						</p>
-						
+						<p>
+							<i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>
+							{{listOfFriends.length}} Friends
+						</p>
 					</div>
 				</div>
 				<br>
@@ -57,17 +60,7 @@
 				<br>
 
 				<!-- Alert Box -->
-				<div
-					class="w3-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-					<span onclick="this.parentElement.style.display='none'"
-						class="w3-hover-text-grey w3-closebtn"> <i
-						class="fa fa-remove"></i>
-					</span>
-					<p>
-						<strong>Hey!</strong>
-					</p>
-					<p>People are looking at your profile. Find out who.</p>
-				</div>
+				
 			</div>
 			<div class="w3-col m7">
 
@@ -82,8 +75,9 @@
 						</div>
 					</div>
 				</div>
+				<div class="w3-container w3-card-2 w3-white w3-round w3-margin" ng-show="suggestedUsers==0">No More Suggested Users</div>
 				<div class="w3-container w3-card-2 w3-white w3-round w3-margin"
-					data-ng-repeat="us in suggestedUsers|filter:searchs">
+					data-ng-repeat="us in suggestedUsers|filter:searchs" >
 					<br>
 					<div data-ng-hide="us.emailID == currentUser.emailID">
 						<div class="w3-left">
